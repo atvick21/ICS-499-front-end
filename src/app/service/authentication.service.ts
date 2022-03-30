@@ -58,7 +58,7 @@ export class AuthenticationService {
     return this.token;
   }
 
-  public isLoggedIn(): boolean {
+	public isUserLoggedIn(): boolean {
 		this.loadToken();
 		if (this.token != null && this.token !== '') {
 			if (this.jwtHelper.decodeToken(this.token).sub != null || '') {
@@ -67,10 +67,13 @@ export class AuthenticationService {
 					return true;
 				}
 			}
-		} else {
-			this.logOut();
-			return false;
+		// } else {
+		// 	this.logOut();
+		// 	return false;
+		// }
 		}
+		this.logOut();
+		return false;
 	}
 
 }
