@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
-import { User } from '../model/User';
+import { User } from '../model/user';
 import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Injectable({
@@ -10,11 +10,11 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 })
 export class AuthenticationService {
 	private host = environment.apiUrl;
-  private token: string;
-  private loggedInUsername: string;
-  private jwtHelper = new JwtHelperService();
+	private token: string;
+	private loggedInUsername: string;
+	private jwtHelper = new JwtHelperService();
   	
-  constructor(private http: HttpClient) { }
+  	constructor(private http: HttpClient) { }
 
 	public login(user: User): Observable<HttpResponse<any> | HttpErrorResponse> {
 		return this.http.post<HttpResponse<any> | HttpErrorResponse>
@@ -28,10 +28,10 @@ export class AuthenticationService {
 
 	public logOut(): void {
 		this.token = null;
-    this.loggedInUsername = null;
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
-    localStorage.removeItem('users');
+		this.loggedInUsername = null;
+		localStorage.removeItem('user');
+		localStorage.removeItem('token');
+		localStorage.removeItem('users');
 	}
 
   public saveToken(token: string): void {
