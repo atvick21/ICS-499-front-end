@@ -6,9 +6,9 @@ export class User {
     public username: string;
     public firstName: string;
     public lastName: string;
-    // public password: string;
+    public password: string;
     public profileImgUrl: string;
-    // public lastLoginDate: date;
+    public lastLoginDate: Date;
     public logInDateDisplay: Date;
     public joinDate: Date;
     public role: string;
