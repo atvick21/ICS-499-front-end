@@ -14,22 +14,36 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 import { FormsModule } from '@angular/forms';
+import { MatCardModule } from "@angular/material/card";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatButtonModule } from "@angular/material/button";
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PeriodicTableComponent } from './periodic-table/periodic-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    PeriodicTableComponent,
     RegisterComponent,
     UserComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NotificationModule
+    NotificationModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatButtonModule,
+    FlexLayoutModule
   ],
-  providers: [NotificationService, AuthenticationGuard, AuthenticationService, UserService, 
+  providers: [NotificationService, AuthenticationGuard, AuthenticationService, UserService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
