@@ -1,9 +1,19 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { AuthenticationService } from './service/authentication.service';
+import { UserService } from './service/user.service';
+import { AuthenticationGuard } from './guard/authentication.guard';
+import { NotificationModule } from './notification.module';
+import { NotificationService } from './service/notification.service';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { UserComponent } from './user/user.component';
+import { FormsModule } from '@angular/forms';
 import { MatCardModule } from "@angular/material/card";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatButtonModule } from "@angular/material/button";
@@ -14,11 +24,18 @@ import { PeriodicTableComponent } from './periodic-table/periodic-table.componen
 @NgModule({
   declarations: [
     AppComponent,
-    PeriodicTableComponent
+    LoginComponent,
+    PeriodicTableComponent,
+    RegisterComponent,
+    UserComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    NotificationModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatCardModule,
@@ -26,7 +43,8 @@ import { PeriodicTableComponent } from './periodic-table/periodic-table.componen
     MatButtonModule,
     FlexLayoutModule
   ],
-  providers: [],
+  providers: [NotificationService, AuthenticationGuard, AuthenticationService, UserService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
