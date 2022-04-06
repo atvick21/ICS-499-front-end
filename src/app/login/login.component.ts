@@ -22,12 +22,11 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.authenticationService.isUserLoggedIn()) {
-      this.router.navigateByUrl('/user/management');
+      this.router.navigateByUrl('/main/periodictable');
     } else {
       this.router.navigateByUrl('/login');
     }
   }
-
 
   public onLogin(user: User): void {
     this.showLoading = true;
@@ -39,7 +38,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           const token = response.headers.get(HeaderType.JWT_TOKEN);
           this.authenticationService.saveToken(token);
           this.authenticationService.addUserToLocalCache(response.body);
-          this.router.navigateByUrl('/user/management');
+          this.router.navigateByUrl('/main/periodictable');
           this.showLoading = false;
         },
         (errorResponse: HttpErrorResponse) => {
