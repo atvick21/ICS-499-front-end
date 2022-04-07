@@ -139,13 +139,13 @@
                                                             <img class="rounded" height="135" width="135"
                                                                 src="{{user?.profileImgUrl}}" alt="">
                                                         </div>
-                                                        <!-- <div *ngIf="fileStatus?.status==='progress'"
+                                                        <div *ngIf="fileStatus?.status==='progress'"
                                                             class="progress mt-1">
                                                             <div class="progress-bar bg-info" role="progressbar"
                                                                 [style.width.%]="fileStatus?.percentage"
                                                                 aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                                                {{fileStatus?.percentage}}%</div>
-                                                        </div> -->
+                                                                {{ fileStatus?.percentage }}%</div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div
@@ -154,17 +154,17 @@
                                                         <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{user?.firstName}}
                                                             {{user?.lastName}}</h4>
                                                         <p class="mb-0">{{user?.username}}</p>
-                                                        <!-- <div *ngIf="user?.lastLoginDateDisplay !== null"
+                                                        <div *ngIf="user?.lastLoginDisplay !== null"
                                                             class="text-muted"><small>Last login:
-                                                                {{user?.lastLoginDateDisplay | date:'medium'}}</small>
-                                                        </div> -->
-                                                        <!-- <div class="mt-2">
+                                                                {{user?.lastLoginDisplay | date:'medium'}}</small>
+                                                        </div>
+                                                        <div class="mt-2">
                                                             <button (click)="updateProfileImage()"
                                                                 class="btn btn-primary" type="button">
                                                                 <i class="fa fa-fw fa-camera"></i>
                                                                 <span>Change Photo</span>
                                                             </button>
-                                                        </div> -->
+                                                        </div>
                                                     </div>
                                                     <div class="text-center text-sm-right">
                                                         <div class="text-muted"><small>Joined {{user?.joinDate |
@@ -174,8 +174,7 @@
                                             </div>
                                             <div class="tab-content pt-3">
                                                 <div class="tab-pane active">
-                                                    <!-- <form #profileUserForm="ngForm"
-                                                        (ngSubmit)="onUpdateCurrentUser(profileUserForm.value)"
+                                                    <form #profileUserForm="ngForm" (ngSubmit)="onUpdateCurrentUser(profileUserForm.value)"
                                                         class="form" novalidate>
                                                         <div class="row">
                                                             <div class="col">
@@ -278,7 +277,7 @@
                                                                 </button>
                                                             </div>
                                                         </div>
-                                                    </form> -->
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -289,10 +288,10 @@
                                 <div class="card mb-3">
                                     <div class="card-body">
                                         <div class="px-xl-3">
-                                            <!-- <button (click)="onLogOut()" class="btn btn-block btn-secondary">
+                                            <button (click)="onLogOut()" class="btn btn-block btn-secondary">
                                                 <span>Logout</span>
                                                 <i class="fa fa-sign-in-alt ml-1"></i>
-                                            </button> -->
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -656,10 +655,10 @@
         </div>
 
         <!-- profile image change form -->
-        <!-- <form enctype="multipart/form-data" style="display:none;">
+        <form enctype="multipart/form-data" style="display:none;">
             <input type="file"
-                (change)="onProfileImageChange($event); onUpdateProfileImage()"
+                (change)="onProfileImageChange($any($event.target).files[0].name, $any($event.target).files[0]); onUpdateProfileImage()"
                 name="profile-image-input" id="profile-image-input" placeholder="file" accept="image/*" />
-        </form> -->
+        </form>
 
     </div>
