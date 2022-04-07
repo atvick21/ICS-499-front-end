@@ -1,9 +1,10 @@
 import { HttpErrorResponse, HttpEvent, HttpEventType } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { NotificationType } from '../enum/notification-type.enum';
+import { Role } from '../enum/role.enum';
 import { CustomHttpResponse } from '../model/custom-http-response';
 import { FileUploadStatus } from '../model/file-upload-status';
 import { User } from '../model/user';
@@ -16,7 +17,7 @@ import { UserService } from '../service/user.service';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
-export class UserComponent implements OnInit {
+export class UserComponent implements OnInit, OnDestroy {
   private titleSubject = new BehaviorSubject<string>('Users');
   public titleAction$ = this.titleSubject.asObservable();
   public users: User[];
@@ -234,7 +235,19 @@ export class UserComponent implements OnInit {
         () => emailForm.reset()
       )
     )
-  }  
+  }
+
+  public get isAdmin(): boolean {
+    return this.getUserRole() === Role.ADMIN || this.getUserRole() === Role.SUPER_ADMIN;
+  }
+
+  public get isManager(): boolean {
+    return this.isAdmin || this.getUserRole() === Role.MANAGER;
+  }
+
+  private getUserRole(): string {
+      return this.authenticationService.getUserFromLocalCache().role;
+  }
   
   private sendNotification(notificationType: NotificationType, message: string): void {
     if (message) {
@@ -246,6 +259,10 @@ export class UserComponent implements OnInit {
 
   private clickButton(buttonId: string): void {
     document.getElementById(buttonId).click();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
 }
