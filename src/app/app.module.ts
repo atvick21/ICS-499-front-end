@@ -29,6 +29,8 @@ import { ElementService } from './service/element.service';
 import { CompoundComponent } from './compound/compound.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TabsComponent } from './tabs/tabs.component';
+import { FlashcardListComponent } from './components/flashcard-list/flashcard-list.component';
+import { FlashcardComponent } from './components/flashcard/flashcard.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { TabsComponent } from './tabs/tabs.component';
     CompoundComponent,
     TabsComponent,
     UserComponent
+    FlashcardListComponent,
+    FlashcardComponent
   ],
   imports: [
     BrowserModule,
