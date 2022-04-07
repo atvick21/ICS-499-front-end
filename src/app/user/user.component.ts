@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
+import { SubSink } from 'subsink';
 import { NotificationType } from '../enum/notification-type.enum';
 import { Role } from '../enum/role.enum';
 import { CustomHttpResponse } from '../model/custom-http-response';
@@ -18,6 +19,7 @@ import { UserService } from '../service/user.service';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit, OnDestroy {
+  private subs = new SubSink();
   private titleSubject = new BehaviorSubject<string>('Users');
   public titleAction$ = this.titleSubject.asObservable();
   public users: User[];
@@ -45,7 +47,7 @@ export class UserComponent implements OnInit, OnDestroy {
   
   public getUsers(showNotification: boolean): void {
     this.refreshing = true;
-    this.subscriptions.push(
+    this.subs.add(
       this.userService.getUsers().subscribe(
         (response: User[]) => {
           this.userService.addUsersToLocalCache(response);
@@ -78,7 +80,7 @@ export class UserComponent implements OnInit, OnDestroy {
 
   public onAddNewUser(userForm: NgForm): void {
     const formData = this.userService.createUserFormData(null, userForm.value, this.profileImg);
-    this.subscriptions.push(
+    this.subs.add(
       this.userService.addUser(formData).subscribe(
         (response: User) => {
           this.clickButton('new-user-close');
@@ -97,7 +99,7 @@ export class UserComponent implements OnInit, OnDestroy {
 
   public onUpdateUser(): void {
     const formData = this.userService.createUserFormData(this.currentUsername, this.editUser, this.profileImg);
-    this.subscriptions.push(
+    this.subs.add(
       this.userService.updateUser(formData).subscribe(
         (response: User) => {
           this.clickButton('closeEditUserModalButton');
@@ -117,7 +119,7 @@ export class UserComponent implements OnInit, OnDestroy {
   	this.refreshing = true;
   	this.currentUsername = this.authenticationService.getUserFromLocalCache().username;
     const formData = this.userService.createUserFormData(this.currentUsername, user, this.profileImg);
-    this.subscriptions.push(
+    this.subs.add(
       this.userService.updateUser(formData).subscribe(
         (response: User) => {
         	this.authenticationService.addUserToLocalCache(response);
@@ -139,7 +141,7 @@ export class UserComponent implements OnInit, OnDestroy {
     const formData = new FormData();
     formData.append('username', this.user.username);
     formData.append('profileImg', this.profileImg);
-    this.subscriptions.push(
+    this.subs.add(
       this.userService.updateProfileImage(formData).subscribe(
         (event: HttpEvent<any>) => {
           this.reportUploadProgress(event);
@@ -206,7 +208,7 @@ export class UserComponent implements OnInit, OnDestroy {
   }
 
   public onDeleteUser(username: string): void {
-    this.subscriptions.push(
+    this.subs.add(
       this.userService.deleteUser(username).subscribe(
         (response: CustomHttpResponse) => {
           this.sendNotification(NotificationType.SUCCESS, response.message);
@@ -222,7 +224,7 @@ export class UserComponent implements OnInit, OnDestroy {
   public onResetPassword(emailForm: NgForm): void {
     this.refreshing = true;
     const emailAddress = emailForm.value['reset-password-email']
-    this.subscriptions.push(
+    this.subs.add(
       this.userService.resetPassword(emailAddress).subscribe(
         (response: CustomHttpResponse) => {
           this.sendNotification(NotificationType.SUCCESS, response.message);
@@ -234,7 +236,7 @@ export class UserComponent implements OnInit, OnDestroy {
         },
         () => emailForm.reset()
       )
-    )
+    );
   }
 
   public get isAdmin(): boolean {
@@ -262,7 +264,7 @@ export class UserComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
+    this.subs.unsubscribe();
   }
 
 }
