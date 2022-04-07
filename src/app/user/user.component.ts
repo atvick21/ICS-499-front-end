@@ -204,16 +204,16 @@ export class UserComponent implements OnInit {
     this.clickButton('openUserEdit');
   }
 
-  public onDeleteUser(userId: number): void {
+  public onDeleteUser(username: string): void {
     this.subscriptions.push(
-      this.userService.deleteUser(userId).subscribe(
+      this.userService.deleteUser(username).subscribe(
         (response: CustomHttpResponse) => {
           this.sendNotification(NotificationType.SUCCESS, response.message);
           this.getUsers(false);
         },
-            (errorResponse: HttpErrorResponse) => {		
-              this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
-            }
+        (errorResponse: HttpErrorResponse) => {		
+          this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+        }
       )
     );
   }

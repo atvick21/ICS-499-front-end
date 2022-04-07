@@ -29,7 +29,7 @@ export class UserService {
     return this.http.get<CustomHttpResponse>(`${this.host}/user/resetpassword/${email}`);
   }
 
-  // could be better to pass anny 
+  // could be better to pass any 
   public updateProfileImage(formData: FormData): Observable<HttpEvent<User>> {
     return this.http.post<User>(`${this.host}/user/updateprofileimg`, formData,
       {
@@ -38,8 +38,8 @@ export class UserService {
       });
   }
 
-  public deleteUser(userId: number): Observable<CustomHttpResponse> {
-    return this.http.delete<CustomHttpResponse>(`${this.host}/user/delete/${userId}`);
+  public deleteUser(username: string): Observable<CustomHttpResponse> {
+    return this.http.delete<CustomHttpResponse>(`${this.host}/user/delete/${username}`);
   }
 
   public addUsersToLocalCache(users: User[]): void {

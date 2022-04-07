@@ -1,12 +1,10 @@
 export class User {
 
-	public id: number;
     public userId: string;
     public email: string;
     public username: string;
     public firstName: string;
     public lastName: string;
-    public password: string;
     public profileImgUrl: string;
     public lastLoginDate: Date;
     public lastLoginDisplay: Date;
@@ -19,7 +17,6 @@ export class User {
     public highScore: number;
 
     constructor() {
-        this.id = 0;
         this.userId = '';
         this.firstName = '';
         this.lastName = '';
