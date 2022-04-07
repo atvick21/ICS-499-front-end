@@ -9,7 +9,7 @@ export class User {
     public password: string;
     public profileImgUrl: string;
     public lastLoginDate: Date;
-    public logInDateDisplay: Date;
+    public lastLoginDisplay: Date;
     public joinDate: Date;
     public role: string;
     public authorities: string[];
@@ -19,14 +19,19 @@ export class User {
     public highScore: number;
 
     constructor() {
-    	this.firstName = '';
-    	this.lastName = '';
-    	this.username = '';
-    	this.email = '';
-    	this.active = false;
-    	this.notLocked = false;
-    	this.role = '';
-    	this.authorities = [];
+        this.id = 0;
+        this.userId = '';
+        this.firstName = '';
+        this.lastName = '';
+        this.username = '';
+        this.email = '';
+        this.lastLoginDate = null;
+        this.lastLoginDisplay = null;
+        this.joinDate = null;
+        this.profileImgUrl = '';
+        this.active = false;
+        this.role = '';
+        this.authorities = [];
     }
 
 }
