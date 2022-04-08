@@ -84,7 +84,7 @@
                             <span [hidden]="appUser?.active" class="badge bg-danger">Inactive</span>
                         </td>
                         <td class="">
-                            <div class="btn-group">
+                            <div *ngIf="!(currentUsername === appUser.username)" class="btn-group">
                                 <button class="btn btn-outline-info" (click)="onEditUser(appUser)"><i
                                         class="fa fa-edit"></i></button>
                                 <button [hidden]="!isAdmin" class="btn btn-outline-danger"
@@ -556,8 +556,8 @@
                         <button type="button" class="btn btn-secondary" data-dismiss="modal"
                             id="closeEditUserModalButton">Close</button>
                         <button type="button" (click)="onUpdateUser()"
-                            [disabled]="!isManager || editUserForm.invalid" class="btn btn-primary">Save
-                            changes</button>
+                            [disabled]="!isManager || editUserForm.invalid" class="btn btn-primary">Save Changes
+                        </button>
                     </div>
                 </div>
             </div>
