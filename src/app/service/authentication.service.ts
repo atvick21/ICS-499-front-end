@@ -65,10 +65,6 @@ export class AuthenticationService {
 					return true;
 				}
 			}
-		// } else {
-		// 	this.logOut();
-		// 	return false;
-		// }
 		}
 		this.logOut();
 		return false;
