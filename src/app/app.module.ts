@@ -20,6 +20,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PeriodicTableComponent } from './periodic-table/periodic-table.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -27,8 +28,8 @@ import { PeriodicTableComponent } from './periodic-table/periodic-table.componen
     LoginComponent,
     PeriodicTableComponent,
     RegisterComponent,
-    UserComponent
-
+    UserComponent,
+    PeriodicTableComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +42,8 @@ import { PeriodicTableComponent } from './periodic-table/periodic-table.componen
     MatCardModule,
     MatToolbarModule,
     MatButtonModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatSnackBarModule
   ],
   providers: [NotificationService, AuthenticationGuard, AuthenticationService, UserService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],

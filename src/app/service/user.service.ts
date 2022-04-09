@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpEvent, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpEvent } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { User } from '../model/user';
@@ -8,7 +8,8 @@ import { CustomHttpResponse } from '../model/custom-http-response';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {  
+export class UserService {
+  
 	private host = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
@@ -66,4 +67,5 @@ export class UserService {
     formData.append('isNonLocked', JSON.stringify(user.notLocked));
     return formData;
   }
+
 }

@@ -2,7 +2,7 @@
   <span>Card View Demo</span>
 </mat-toolbar>
 
-<div class="periodic-table">
+<div class="periodic-table" *ngFor="let element of elements">
   <div class="element other-nonmetal c1 r1">
     <input class="activate" type="radio" name="elements">
     <input class="deactivate" type="radio" name="elements">
@@ -13,18 +13,19 @@
           <div class="electron"></div>
         </div>
       </div>
-      <div class="atomic-number">1</div>
+      <div class="atomic-number">{{element.atomicNumber}}</div>
       <div class="label">
-        <div class="symbol">H</div>
-        <div class="name">Hydrogen</div>
+        <div class="symbol">{{element.symbol}}</div>
+        <div class="name">{{element.name}}</div>
       </div>
-      <div class="atomic-mass">1.008</div>
+      <div class="atomic-mass">{{element.atomicMass}}</div>
       <ul class="atomic-weight">
-        <li>1</li>
+        <li>{{element.atomicNumber}}</li>
       </ul>
     </div>
   </div>
-  <div class="element noble-gas c18 r1">
+</div>
+  <!-- <div class="element noble-gas c18 r1">
     <input class="activate" type="radio" name="elements">
     <input class="deactivate" type="radio" name="elements">
     <div class="overlay"></div>
@@ -10905,4 +10906,4 @@
       <label class="unknown" for="unknown">Unknown</label>
     </div>
   </div>
-</div>
+</div> -->
