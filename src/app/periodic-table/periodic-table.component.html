@@ -12,7 +12,10 @@
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
       <mat-icon>share</mat-icon>
     </button> -->
-    <div style="position: absolute; right: 10px">{{user?.firstName}}</div>
+    <div class="profileInfo" [hidden]="!isLoggedIn">
+      <span class="name">{{user?.firstName}}</span>
+      <img height="40" width="40" src="{{user?.profileImgUrl}}" class="rounded-circle img-fluid img-thumbnail" alt="" />
+    </div>
   </mat-toolbar>
 
   <mat-drawer #drawer mode="side">
