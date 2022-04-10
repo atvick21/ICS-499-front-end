@@ -22,14 +22,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PeriodicTableComponent } from './periodic-table/periodic-table.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { ElementComponent } from './element/element.component';
+import { ElementService } from './service/element.service';
+import { CompoundComponent } from './compound/compound.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     PeriodicTableComponent,
+    ElementComponent,
     RegisterComponent,
-    UserComponent
+    UserComponent,
+    CompoundComponent
 
   ],
   imports: [
@@ -47,7 +52,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatIconModule,
     MatSidenavModule
   ],
-  providers: [NotificationService, AuthenticationGuard, AuthenticationService, UserService,
+  providers: [NotificationService, AuthenticationGuard, AuthenticationService, ElementService, UserService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
