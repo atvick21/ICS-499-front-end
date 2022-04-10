@@ -15,11 +15,13 @@ import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from "@angular/material/card";
+import {MatTabsModule} from '@angular/material/tabs';
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatButtonModule } from "@angular/material/button";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PeriodicTableComponent } from './periodic-table/periodic-table.component';
+import { TabsComponent } from './tabs/tabs.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { PeriodicTableComponent } from './periodic-table/periodic-table.componen
     LoginComponent,
     PeriodicTableComponent,
     RegisterComponent,
-    UserComponent
+    UserComponent,
+    TabsComponent
 
   ],
   imports: [
@@ -39,6 +42,7 @@ import { PeriodicTableComponent } from './periodic-table/periodic-table.componen
     HttpClientModule,
     BrowserAnimationsModule,
     MatCardModule,
+    MatTabsModule,
     MatToolbarModule,
     MatButtonModule,
     FlexLayoutModule
