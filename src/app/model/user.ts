@@ -7,7 +7,6 @@ export class User {
     public lastName: string;
     public profileImgUrl: string;
     public lastLoginDate: Date;
-    public lastLoginDisplay: Date;
     public joinDate: Date;
     public role: string;
     public authorities: string[];
@@ -23,7 +22,6 @@ export class User {
         this.username = '';
         this.email = '';
         this.lastLoginDate = null;
-        this.lastLoginDisplay = null;
         this.joinDate = null;
         this.profileImgUrl = '';
         this.active = false;
