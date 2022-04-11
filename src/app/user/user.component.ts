@@ -29,7 +29,6 @@ export class UserComponent implements OnInit, OnDestroy {
   public fileName: string;
   public profileImg: File;
   public editUser = new User();
-  // private currentUsername: string;
   public fileStatus = new FileUploadStatus();
   
   constructor(private router: Router, private authenticationService: AuthenticationService,
