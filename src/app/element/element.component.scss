@@ -1,3 +1,5 @@
+@use "sass:math";
+
 $bgColor: #101318;
 $gridGap: 5px;
 
@@ -133,7 +135,7 @@ $unknownColor: #cccccc;
         @for $i from 1 through 32 {
           @for $a from 1 through $i {
             &:nth-last-child(#{$i}):first-child ~ .electron:nth-child(#{$a}) {
-              transform: rotate((360deg/$i)*($a - 1));
+              transform: rotate(math.div(360deg, $i)*($a - 1));
             }
           }
         }

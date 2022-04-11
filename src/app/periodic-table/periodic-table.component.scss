@@ -1,5 +1,3 @@
-@use "sass:math";
-
 $bgColor: #101318;
 $gridGap: 5px;
 
@@ -64,8 +62,8 @@ body {
     opacity: 0.5;
   }
 
-  // --------------------------------------
-  // GAP
+// --------------------------------------
+// GAP
 }
 .gap {
   position: relative;
@@ -87,8 +85,8 @@ body {
   }
 
 
-  // --------------------------------------
-  // COLORS
+// --------------------------------------
+// COLORS
 }
 .alkali-metal {
   color: $alkaliMetalColor;
@@ -121,7 +119,6 @@ body {
   color: $unknownColor;
 }
 
-
 // --------------------------------------
 // ROWS & COLUMNS
 @for $i from 1 through 10 {
@@ -135,8 +132,8 @@ body {
   }
 
 
-  // --------------------------------------
-  // SHIFT EDGE ELEMENTS ON ZOOM
+// --------------------------------------
+// SHIFT EDGE ELEMENTS ON ZOOM
 }
 .r1 input[type="radio"].activate:checked ~ .square {
   top: 100%;
@@ -206,41 +203,8 @@ body {
   }
 };
 
-
-
-//// --------------------------------------
-//// KEY
-//.key {
-//  position: relative;
-//  z-index: 1;
-//  grid-row: 1;
-//  grid-column-start: 3;
-//  grid-column-end: 17;
-//  font-size: 0.8vw;
-//  line-height: 1.5;
-//  display: inline-block;
-//  align-items: center;
-//  pointer-events: none;
-//  user-select: none;
-//
-//  .row {
-//    position: relative;
-//    display: flex;
-//    width: 100%;
-//    justify-content: space-between;
-//
-//    label {
-//      opacity: 0.85;
-//      cursor: pointer;
-//      transition: 120ms;
-//      pointer-events: all;
-//
-//      &:hover {
-//        opacity: 1 !important;
-//      }
-//
-      // --------------------------------------
-      // CATEGORY TOGGLES
+// --------------------------------------
+// CATEGORY TOGGLES
 #alkali-metals:checked ~ .periodic-table .element:not(.alkali-metal),
 #alkaline-earth-metals:checked ~ .periodic-table .element:not(.alkaline-earth-metal),
 #lanthanoids:checked ~ .periodic-table .element:not(.lanthanoid),
