@@ -1,7 +1,7 @@
-<div class="element {{element.groupBlock}} {{element.tablePosition}}">
+<div #test class="element {{element.groupBlock}} {{element.tablePosition}}" (click)="onClick($event, test.classList, element)">
   <input class="activate" type="radio" name="elements">
-  <input class="deactivate" type="radio" name="elements">
-  <div class="overlay"></div>
+<!--  <input class="deactivate" type="radio" name="elements">-->
+<!--  <div class="overlay"></div>-->
   <div class="square">
     <div class="model">
       <div class="orbital">

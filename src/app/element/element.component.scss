@@ -24,6 +24,7 @@ $unknownColor: #cccccc;
   color: #fff;
   transition: 500ms;
 
+  //Fades background color
   .overlay {
     position: fixed;
     z-index: 1;
@@ -88,6 +89,7 @@ $unknownColor: #cccccc;
     transition: 200ms;
     text-align: right;
   }
+
   .model {
     display: none;
     position: absolute;
@@ -166,36 +168,36 @@ $unknownColor: #cccccc;
         z-index: 3;
         pointer-events: all;
       }
-      &:checked ~ .overlay {
-        opacity: 0.75;
-      }
-      &:checked ~ .square {
-        z-index: 3;
-        transform: scale(3);
-        transition-duration: 500ms, 0ms, 200ms, 200ms, 200ms, 200ms;
-        transition-delay: 0ms;
-        outline: none;
-        cursor: auto;
-
-        .label {
-          transition-duration: 500ms;
-          transform: scale(0.75);
-        }
-        .atomic-weight {
-          opacity: 1;
-          transition: 500ms;
-        }
-        .model {
-          display: block;
-          animation: fade-in;
-          animation-duration: 1s;
-        }
-        .orbital {
-          animation-name: rotate;
-          animation-timing-function: linear;
-          animation-iteration-count: infinite;
-        }
-      }
+      //&:checked ~ .overlay {
+      //  opacity: 0.75;
+      //}
+      //&:checked ~ .square {
+      //  z-index: 3;
+      //  transform: scale(3);
+      //  transition-duration: 500ms, 0ms, 200ms, 200ms, 200ms, 200ms;
+      //  transition-delay: 0ms;
+      //  outline: none;
+      //  cursor: auto;
+      //
+      //  .label {
+      //    transition-duration: 500ms;
+      //    transform: scale(0.75);
+      //  }
+      //  .atomic-weight {
+      //    opacity: 1;
+      //    transition: 500ms;
+      //  }
+      //  .model {
+      //    display: block;
+      //    animation: fade-in;
+      //    animation-duration: 1s;
+      //  }
+      //  .orbital {
+      //    animation-name: rotate;
+      //    animation-timing-function: linear;
+      //    animation-iteration-count: infinite;
+      //  }
+      //}
     }
     &.deactivate {
       position: fixed;
@@ -310,18 +312,18 @@ $unknownColor: #cccccc;
   // --------------------------------------
   // SHIFT EDGE ELEMENTS ON ZOOM
 }
-.r1 input[type="radio"].activate:checked ~ .square {
-  top: 100%;
-}
-.r10 input[type="radio"].activate:checked ~ .square {
-  top: -100%;
-}
-.c1 input[type="radio"].activate:checked ~ .square {
-  left: 100%;
-}
-.c18 input[type="radio"].activate:checked ~ .square {
-  left: -100%;
-}
+//.r1 input[type="radio"].activate:checked ~ .square {
+//  top: 100%;
+//}
+//.r10 input[type="radio"].activate:checked ~ .square {
+//  top: -100%;
+//}
+//.c1 input[type="radio"].activate:checked ~ .square {
+//  left: 100%;
+//}
+//.c18 input[type="radio"].activate:checked ~ .square {
+//  left: -100%;
+//}
 
 
 // --------------------------------------
