@@ -20,6 +20,8 @@ import { MatButtonModule } from "@angular/material/button";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PeriodicTableComponent } from './periodic-table/periodic-table.component';
+import { QuizComponent } from './quiz/quiz.component';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { PeriodicTableComponent } from './periodic-table/periodic-table.componen
     LoginComponent,
     PeriodicTableComponent,
     RegisterComponent,
-    UserComponent
+    UserComponent,
+    QuizComponent
+
 
   ],
   imports: [
