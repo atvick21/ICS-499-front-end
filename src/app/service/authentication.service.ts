@@ -32,29 +32,30 @@ export class AuthenticationService {
 		localStorage.removeItem('users');
 	}
 
-  public saveToken(token: string): void {
+	public saveToken(token: string): void {
 		this.token = token;
-    localStorage.setItem('token', token);
+		localStorage.setItem('token', token);
 	}
 
-  // add user to cache
-  public addUserToLocalCache(user: User): void {
-    localStorage.setItem('user', JSON.stringify(user));
+  	// add user to cache
+	public addUserToLocalCache(user: User): void {
+		console.log("new imgurl: " + user.profileImgUrl);
+		localStorage.setItem('user', JSON.stringify(user));
 	}
 
-  // get user from local cache
-  public getUserFromLocalCache(): User {
-    return JSON.parse(localStorage.getItem('user'));
+	// get user from local cache
+	public getUserFromLocalCache(): User {
+		return JSON.parse(localStorage.getItem('user'));
 	}
 
-  // get token from local cache
-  public loadToken(): void {
-    this.token = localStorage.getItem('token');
-  }
+	// get token from local cache
+	public loadToken(): void {
+		this.token = localStorage.getItem('token');
+	}
 
-  public getToken(): string {
-    return this.token;
-  }
+	public getToken(): string {
+		return this.token;
+	}
 
 	public isUserLoggedIn(): boolean {
 		this.loadToken();

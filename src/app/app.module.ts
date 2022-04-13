@@ -21,17 +21,23 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PeriodicTableComponent } from './periodic-table/periodic-table.component';
 import { QuizComponent } from './quiz/quiz.component';
-
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { ElementComponent } from './element/element.component';
+import { ElementService } from './service/element.service';
+import { CompoundComponent } from './compound/compound.component';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     PeriodicTableComponent,
+    ElementComponent,
     RegisterComponent,
     UserComponent,
-    QuizComponent
-
+    QuizComponent,
+    CompoundComponent
 
   ],
   imports: [
@@ -45,9 +51,12 @@ import { QuizComponent } from './quiz/quiz.component';
     MatCardModule,
     MatToolbarModule,
     MatButtonModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatSnackBarModule
   ],
-  providers: [NotificationService, AuthenticationGuard, AuthenticationService, UserService,
+  providers: [NotificationService, AuthenticationGuard, AuthenticationService, ElementService, UserService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })

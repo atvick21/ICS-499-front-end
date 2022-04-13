@@ -85,8 +85,9 @@
                         </td>
                         <td class="">
                             <div *ngIf="!(currentUsername === appUser.username)" class="btn-group">
-                                <button class="btn btn-outline-info" (click)="onEditUser(appUser)"><i
-                                        class="fa fa-edit"></i></button>
+                                <button class="btn btn-outline-info" (click)="onEditUser(appUser)">
+                                    <i class="fa fa-edit"></i>
+                                </button>
                                 <button [hidden]="!isAdmin" class="btn btn-outline-danger"
                                     (click)="onDeleteUser(appUser?.username)"><i class="fa fa-trash"></i></button>
                             </div>
@@ -154,9 +155,9 @@
                                                         <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{user?.firstName}}
                                                             {{user?.lastName}}</h4>
                                                         <p class="mb-0">{{user?.username}}</p>
-                                                        <div *ngIf="user?.lastLoginDisplay !== null"
+                                                        <div *ngIf="user?.lastLoginDate !== null"
                                                             class="text-muted"><small>Last login:
-                                                                {{user?.lastLoginDisplay | date:'medium'}}</small>
+                                                                {{user?.lastLoginDate | date:'medium'}}</small>
                                                         </div>
                                                         <div class="mt-2">
                                                             <button (click)="updateProfileImage()"
@@ -344,8 +345,8 @@
                                                     <span [hidden]="selectedUser?.active"
                                                         class="badge bg-danger">Inactive</span>
                                                 </div>
-                                                <div *ngIf="selectedUser?.lastLoginDisplay" class="text-muted">
-                                                    <small>Last Login: {{selectedUser?.lastLoginDisplay | date:
+                                                <div *ngIf="selectedUser?.lastLoginDate" class="text-muted">
+                                                    <small>Last Login: {{selectedUser?.lastLoginDate | date:
                                                         'medium'}}</small>
                                                 </div>
                                             </div>
@@ -361,7 +362,7 @@
                                     <li class="list-group-item"><i class="fa fa-id-badge float-right"></i> {{selectedUser?.userId}}</li>
                                     <li class="list-group-item"><i class="fa fa-envelope float-right"></i> {{selectedUser?.email}}</li>
                                     <li class="list-group-item"><i class="fa fa-shield-alt float-right"></i> {{selectedUser?.role.substring(5)}}
-                                    <li *ngIf="selectedUser?.lastLoginDisplay" class="list-group-item"><i class="fa fa-sign-in-alt float-right"></i> {{selectedUser?.lastLoginDisplay | date: 'medium'}}</li>
+                                    <li *ngIf="selectedUser?.lastLoginDate" class="list-group-item"><i class="fa fa-sign-in-alt float-right"></i> {{selectedUser?.lastLoginDate | date: 'medium'}}</li>
                                     <li class="list-group-item">
                                         <span [hidden]="selectedUser?.notLocked">
                                             <i class="fa fa-lock float-right" style="color: red;">
