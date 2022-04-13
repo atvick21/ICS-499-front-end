@@ -37,7 +37,7 @@ import { TabsComponent } from './tabs/tabs.component';
     ElementComponent,
     RegisterComponent,
     UserComponent,
-    CompoundComponent
+    CompoundComponent,
     TabsComponent
   ],
   imports: [
