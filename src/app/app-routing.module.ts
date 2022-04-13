@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'user/management', component: UserComponent, canActivate: [AuthenticationGuard] },
   { path: 'main/periodictable', component: PeriodicTableComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' }
+  { path: '', redirectTo: '/main/periodictable', pathMatch: 'full' }
 ]
 
 @NgModule({

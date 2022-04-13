@@ -179,7 +179,7 @@ export class UserComponent implements OnInit, OnDestroy {
 
   public onLogOut(): void {
     this.authenticationService.logOut();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/main/periodictable']);
     this.sendNotification(NotificationType.SUCCESS, "You've been successfully logged out.")
   }
 
