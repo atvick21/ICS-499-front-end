@@ -20,6 +20,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PeriodicTableComponent } from './periodic-table/periodic-table.component';
+import { QuizComponent } from './quiz/quiz.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ElementComponent } from './element/element.component';
@@ -35,7 +36,9 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     ElementComponent,
     RegisterComponent,
     UserComponent,
+    QuizComponent,
     CompoundComponent
+
   ],
   imports: [
     BrowserModule,
