@@ -15,6 +15,7 @@ import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from "@angular/material/card";
+import {MatTabsModule} from '@angular/material/tabs';
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatButtonModule } from "@angular/material/button";
 import { FlexLayoutModule } from "@angular/flex-layout";
@@ -27,6 +28,7 @@ import { ElementComponent } from './element/element.component';
 import { ElementService } from './service/element.service';
 import { CompoundComponent } from './compound/compound.component';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { TabsComponent } from './tabs/tabs.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     RegisterComponent,
     UserComponent,
     QuizComponent,
-    CompoundComponent
+    CompoundComponent,
+    TabsComponent
 
   ],
   imports: [
@@ -49,6 +52,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     HttpClientModule,
     BrowserAnimationsModule,
     MatCardModule,
+    MatTabsModule,
     MatToolbarModule,
     MatButtonModule,
     FlexLayoutModule,
