@@ -3,6 +3,12 @@ import { Router } from '@angular/router';
 import { Role } from '../enum/role.enum';
 import { User } from '../model/user';
 import { AuthenticationService } from '../service/authentication.service';
+import { Element } from '../model/element.model';
+import { ElementService } from '../service/element.service';
+
+import { SubSink } from 'subsink';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-periodic-table',
@@ -10,11 +16,14 @@ import { AuthenticationService } from '../service/authentication.service';
   styleUrls: ['./periodic-table.component.scss']
 })
 export class PeriodicTableComponent implements OnInit, OnDestroy {
+  private subs = new SubSink();
   showFiller = false;
   public user: User;
   public isLoggedIn: boolean;
+  elements: Element[] = [];
   
-  constructor(private router: Router, private authService: AuthenticationService) { }
+  constructor(private elementService: ElementService, private router: Router, private authService: AuthenticationService,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     if (this.authService.isUserLoggedIn()) {
@@ -23,6 +32,7 @@ export class PeriodicTableComponent implements OnInit, OnDestroy {
     } else {
       this.isLoggedIn = false;
     }
+    this.getElements(true);
   }
 
   public onClickLogin(): void {
@@ -49,8 +59,36 @@ export class PeriodicTableComponent implements OnInit, OnDestroy {
     return this.authService.getUserFromLocalCache().role;
   }
 
-  ngOnDestroy(): void {
-    // this.subs.unsubscribe();
+  async getElements(showNotification: boolean) {
+    // const data = this.ElementService
+    //   .getElements()
+    //   .subscribe((data: Element[]) => this.elements = data.sort((a, b) => (Number(a.atomicNumber) > Number(b.atomicNumber) ? 1 : -1)))
+    // console.log("data returned from API call: \n" + data);
+    
+    this.subs.add(
+      this.elementService.getElements().subscribe({
+        next: (response: Element[]) => {
+          // this.userService.addUsersToLocalCache(response);
+          this.elements = this.sortElements(response);
+          // this.refreshing = false;
+          if(showNotification) {
+            this._snackBar.open("loaded elements", "close", {
+              duration: 5 * 1000,
+            });
+          }
+        },
+        error: (errorResponse: HttpErrorResponse) => {
+          this._snackBar.open(errorResponse.error.message, "close");
+        }
+      })
+    );
   }
 
+  private sortElements(input: Element[]): Element[] {
+    return input.sort((a,b) => a.atomicNumber - b.atomicNumber);
+  }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
+  }
 }
