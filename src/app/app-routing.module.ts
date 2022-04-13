@@ -9,7 +9,7 @@ import { QuizComponent } from './quiz/quiz.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  {path: 'quiz', component: QuizComponent},
+  { path: 'quiz', component: QuizComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'user/management', component: UserComponent, canActivate: [AuthenticationGuard] },
   { path: 'main/periodictable', component: PeriodicTableComponent },

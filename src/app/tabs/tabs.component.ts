@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Itablink} from '../itablink';
+import {itablink} from '../itablink';
 
 @Component({
   selector: 'app-tabs',
@@ -8,10 +8,14 @@ import {Itablink} from '../itablink';
 })
 export class TabsComponent implements OnInit {
 
-  tabLinks:Array<Itablink> = [
+  tabLinks:Array<itablink> = [
   {
     path: 'main/periodictable',
-    label: 'sandbox'
+    label: 'Sandbox'
+  },
+  {
+    path: 'quiz',
+    label: 'Quiz'
   }
 ]
   constructor() { }

@@ -11,7 +11,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'app-periodic-table',
   templateUrl: './periodic-table.component.html',
   styleUrls: ['./periodic-table.component.scss']
 })
@@ -21,6 +20,7 @@ export class PeriodicTableComponent implements OnInit, OnDestroy {
   public user: User;
   public isLoggedIn: boolean;
   elements: Element[] = [];
+  pageTitle:string ='Sandbox'
   
   constructor(private elementService: ElementService, private router: Router, private authService: AuthenticationService,
     private _snackBar: MatSnackBar) { }
