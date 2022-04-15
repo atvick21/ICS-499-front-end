@@ -40,8 +40,8 @@ import { TabsComponent } from './tabs/tabs.component';
     UserComponent,
     QuizComponent,
     CompoundComponent,
-    TabsComponent
-
+    TabsComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
