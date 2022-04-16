@@ -1,62 +1,26 @@
-<mat-drawer-container autosize>
-  <mat-toolbar>
-    <button mat-icon-button (click)="drawer.toggle()" class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>Welcome to the Chemistry Lab</span>
-    <!-- <span class="example-spacer"></span> -->
-    <!-- <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
-    </button> -->
-    <div class="profileInfo" [hidden]="!isLoggedIn">
-      <span class="name">{{user?.firstName}}</span>
-      <img height="40" width="40" src="{{user?.profileImgUrl}}" class="rounded-circle img-fluid img-thumbnail" alt="" />
-    </div>
-  </mat-toolbar>
+  <!--<input class="category-toggle" type="radio" id="alkali-metals" name="categories">-->
+  <!--<input class="category-cancel" type="radio" id="cancel" name="categories">-->
+  <!--<input class="category-toggle" type="radio" id="alkaline-earth-metals" name="categories">-->
+  <!--<input class="category-cancel" type="radio" id="cancel" name="categories">-->
+  <!--<input class="category-toggle" type="radio" id="lanthanoids" name="categories">-->
+  <!--<input class="category-cancel" type="radio" id="cancel" name="categories">-->
+  <!--<input class="category-toggle" type="radio" id="actinoids" name="categories">-->
+  <!--<input class="category-cancel" type="radio" id="cancel" name="categories">-->
+  <!--<input class="category-toggle" type="radio" id="transition-metals" name="categories">-->
+  <!--<input class="category-cancel" type="radio" id="cancel" name="categories">-->
+  <!--<input class="category-toggle" type="radio" id="post-transition-metals" name="categories">-->
+  <!--<input class="category-cancel" type="radio" id="cancel" name="categories">-->
+  <!--<input class="category-toggle" type="radio" id="metalloids" name="categories">-->
+  <!--<input class="category-cancel" type="radio" id="cancel" name="categories">-->
+  <!--<input class="category-toggle" type="radio" id="other-nonmetals" name="categories">-->
+  <!--<input class="category-cancel" type="radio" id="cancel" name="categories">-->
+  <!--<input class="category-toggle" type="radio" id="noble-gasses" name="categories">-->
+  <!--<input class="category-cancel" type="radio" id="cancel" name="categories">-->
+  <!--<input class="category-toggle" type="radio" id="unknown" name="categories">-->
+  <!--<input class="category-cancel" type="radio" id="cancel" name="categories">-->
 
-  <mat-drawer #drawer mode="side">
-    <!-- <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
-    </button> -->
-    <nav>
-      <button [hidden]="isLoggedIn" (click)="onClickLogin()" mat-raised-button>
-        Login
-      </button>
-      <button [hidden]="!isLoggedIn" (click)="onClickLogout()" mat-raised-button>
-        Logout
-      </button>
-      <button [hidden]="!isAdmin" (click)="onClickUserManagement()" mat-raised-button color="accent">
-        User Managment
-      </button>
-    </nav>
-  </mat-drawer>
+  <div class="periodic-table">
+    <app-element *ngFor="let element of elements" [element]="element"></app-element>
+  </div>
 
-<!--<input class="category-toggle" type="radio" id="alkali-metals" name="categories">-->
-<!--<input class="category-cancel" type="radio" id="cancel" name="categories">-->
-<!--<input class="category-toggle" type="radio" id="alkaline-earth-metals" name="categories">-->
-<!--<input class="category-cancel" type="radio" id="cancel" name="categories">-->
-<!--<input class="category-toggle" type="radio" id="lanthanoids" name="categories">-->
-<!--<input class="category-cancel" type="radio" id="cancel" name="categories">-->
-<!--<input class="category-toggle" type="radio" id="actinoids" name="categories">-->
-<!--<input class="category-cancel" type="radio" id="cancel" name="categories">-->
-<!--<input class="category-toggle" type="radio" id="transition-metals" name="categories">-->
-<!--<input class="category-cancel" type="radio" id="cancel" name="categories">-->
-<!--<input class="category-toggle" type="radio" id="post-transition-metals" name="categories">-->
-<!--<input class="category-cancel" type="radio" id="cancel" name="categories">-->
-<!--<input class="category-toggle" type="radio" id="metalloids" name="categories">-->
-<!--<input class="category-cancel" type="radio" id="cancel" name="categories">-->
-<!--<input class="category-toggle" type="radio" id="other-nonmetals" name="categories">-->
-<!--<input class="category-cancel" type="radio" id="cancel" name="categories">-->
-<!--<input class="category-toggle" type="radio" id="noble-gasses" name="categories">-->
-<!--<input class="category-cancel" type="radio" id="cancel" name="categories">-->
-<!--<input class="category-toggle" type="radio" id="unknown" name="categories">-->
-<!--<input class="category-cancel" type="radio" id="cancel" name="categories">-->
-<div class="periodic-table">
-  <app-element *ngFor="let element of elements" [element]="element"></app-element>
-</div>
 <app-compound></app-compound>
-</mat-drawer-container>
