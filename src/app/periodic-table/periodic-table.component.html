@@ -56,7 +56,7 @@
 <!--<input class="category-toggle" type="radio" id="unknown" name="categories">-->
 <!--<input class="category-cancel" type="radio" id="cancel" name="categories">-->
 <div class="periodic-table">
-  <app-element *ngFor="let element of elements" [element]="element"></app-element>
+  <app-element *ngFor="let element of elements" [element]="element" (sendElementMessage)="receiveMessage($event)" [isPeriodicTable]="true"></app-element>
 </div>
-<app-compound></app-compound>
+  <app-compound [interactedElement]="interactedElement" [events]="eventsSubject.asObservable()" [isPeriodicTable]="false"></app-compound>
 </mat-drawer-container>
