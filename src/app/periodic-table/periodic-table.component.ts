@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import { Router } from '@angular/router';
 import { Role } from '../enum/role.enum';
 import { User } from '../model/user';
@@ -9,6 +9,7 @@ import { ElementService } from '../service/element.service';
 import { SubSink } from 'subsink';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
+import {Subject} from "rxjs";
 
 @Component({
   templateUrl: './periodic-table.component.html',
@@ -22,6 +23,10 @@ export class PeriodicTableComponent implements OnInit, OnDestroy {
   elements: Element[] = [];
   pageTitle:string ='Sandbox'
   
+  interactedElement: Element;
+  eventsSubject: Subject<Element> = new Subject<Element>();
+  isCompound = false;
+
   constructor(private elementService: ElementService, private router: Router, private authService: AuthenticationService,
     private _snackBar: MatSnackBar) { }
 
@@ -33,6 +38,15 @@ export class PeriodicTableComponent implements OnInit, OnDestroy {
       this.isLoggedIn = false;
     }
     this.getElements(true);
+  }
+
+  public receiveMessage($event) {
+    this.interactedElement = $event;
+    this.emitInteractedEvent($event);
+  }
+
+  public emitInteractedEvent(element: Element) {
+    this.eventsSubject.next(element);
   }
 
   public onClickLogin(): void {
@@ -64,7 +78,7 @@ export class PeriodicTableComponent implements OnInit, OnDestroy {
     //   .getElements()
     //   .subscribe((data: Element[]) => this.elements = data.sort((a, b) => (Number(a.atomicNumber) > Number(b.atomicNumber) ? 1 : -1)))
     // console.log("data returned from API call: \n" + data);
-    
+
     this.subs.add(
       this.elementService.getElements().subscribe({
         next: (response: Element[]) => {
