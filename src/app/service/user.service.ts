@@ -25,6 +25,10 @@ export class UserService {
     return this.http.post<User>(`${this.host}/user/update`, formData);
   }
 
+  public editUser(formData: FormData): Observable<User> {
+    return this.http.post<User>(`${this.host}/user/edit`, formData);
+  }
+
   public resetPassword(email: string): Observable<CustomHttpResponse> {
     return this.http.get<CustomHttpResponse>(`${this.host}/user/resetpassword/${email}`);
   }
@@ -66,4 +70,21 @@ export class UserService {
     formData.append('isNonLocked', JSON.stringify(user.notLocked));
     return formData;
   }
+
+  public createEditUserFormData(selectedUserId: string, user: User, profileImage: File): FormData {
+    const formData = new FormData();
+    console.log(selectedUserId);
+    formData.append('userId', selectedUserId);
+    formData.append('firstName', user.firstName);
+    formData.append('lastName', user.lastName);
+    formData.append('username', user.username);
+    formData.append('email', user.email);
+    formData.append('role', user.role);
+    formData.append('profileImg', profileImage);
+    formData.append('isActive', JSON.stringify(user.active));
+    formData.append('isNonLocked', JSON.stringify(user.notLocked));
+    // console.log(formData);
+    return formData;
+  }
+
 }

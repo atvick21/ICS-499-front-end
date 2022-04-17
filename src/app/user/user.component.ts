@@ -96,9 +96,9 @@ export class UserComponent implements OnInit, OnDestroy {
   }
 
   public onUpdateUser(): void {
-    const formData = this.userService.createUserFormData(this.currentUsername, this.editUser, this.profileImg);
+    const formData = this.userService.createEditUserFormData(this.editUser.userId, this.editUser, this.profileImg);
     this.subs.add(
-      this.userService.updateUser(formData).subscribe({
+      this.userService.editUser(formData).subscribe({
         next: (response: User) => {
           this.clickButton('closeEditUserModalButton');
           this.getUsers(false);
