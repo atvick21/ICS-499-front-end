@@ -5,6 +5,7 @@ import { ElementService } from '../service/element.service';
 import { SubSink } from 'subsink';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'periodic-table',
@@ -16,11 +17,23 @@ export class PeriodicTableComponent implements OnInit, OnDestroy {
   showFiller = false;
   elements: Element[] = [];
   pageTitle: string = 'Sandbox'
+  interactedElement: Element;
+  eventsSubject: Subject<Element> = new Subject<Element>();
+  isCompound = false;
   
   constructor(private elementService: ElementService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getElements(true);
+  }
+
+  public receiveMessage($event) {
+    this.interactedElement = $event;
+    this.emitInteractedEvent($event);
+  }
+
+  public emitInteractedEvent(element: Element) {
+    this.eventsSubject.next(element);
   }
 
   async getElements(showNotification: boolean) {
