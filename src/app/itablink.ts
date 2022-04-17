@@ -1,4 +1,4 @@
-export interface Itablink {
+export interface itablink {
     path: string,
     label: string
 }

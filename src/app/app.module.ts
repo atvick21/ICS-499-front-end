@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,7 +15,7 @@ import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from "@angular/material/card";
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatButtonModule } from "@angular/material/button";
 import { FlexLayoutModule } from "@angular/flex-layout";
@@ -27,7 +27,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { ElementComponent } from './element/element.component';
 import { ElementService } from './service/element.service';
 import { CompoundComponent } from './compound/compound.component';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TabsComponent } from './tabs/tabs.component';
 
 @NgModule({
@@ -40,8 +40,8 @@ import { TabsComponent } from './tabs/tabs.component';
     UserComponent,
     QuizComponent,
     CompoundComponent,
-    TabsComponent
-
+    TabsComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +58,8 @@ import { TabsComponent } from './tabs/tabs.component';
     FlexLayoutModule,
     MatIconModule,
     MatSidenavModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    HttpClientXsrfModule.withOptions({cookieName: 'XSRF-TOKEN'})
   ],
   providers: [NotificationService, AuthenticationGuard, AuthenticationService, ElementService, UserService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],

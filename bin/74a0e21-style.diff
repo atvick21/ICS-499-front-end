@@ -1,0 +1,28 @@
+commit 74a0e21d33fdd515b93ed6c0231850cdd08afe46
+Author: Andrew Vick <atvick21@gmail.com>
+Date:   Sun Apr 10 17:19:31 2022 -0500
+
+    Most of the tab component completed, but not completely
+
+diff --git a/angular.json b/angular.json
+index 599200e..6471cf8 100644
+--- a/angular.json
++++ b/angular.json
+@@ -31,7 +31,7 @@
+               "src/assets"
+             ],
+             "styles": [
+-              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
++              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+               "src/styles.scss"
+             ],
+             "scripts": []
+@@ -100,7 +100,7 @@
+               "src/assets"
+             ],
+             "styles": [
+-              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
++              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+               "src/styles.scss"
+             ],
+             "scripts": []
