@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { FlashcardListComponent } from './components/flashcard-list/flashcard-list.component';
+import { FlashcardCreateComponent } from './components/flashcard-create/flashcard-create.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'main/periodictable', component: PeriodicTableComponent },
   { path: '', redirectTo: '/main/periodictable', pathMatch: 'full' },
   { path: 'flashcard/all', component: FlashcardListComponent},
+  { path: 'flashcard/create', component: FlashcardCreateComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full' }
 ]
 

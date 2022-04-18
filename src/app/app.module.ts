@@ -31,6 +31,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TabsComponent } from './tabs/tabs.component';
 import { FlashcardListComponent } from './components/flashcard-list/flashcard-list.component';
 import { FlashcardComponent } from './components/flashcard/flashcard.component';
+import { FlashcardCreateComponent } from './components/flashcard-create/flashcard-create.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { FlashcardComponent } from './components/flashcard/flashcard.component';
     TabsComponent,
     UserComponent
     FlashcardListComponent,
-    FlashcardComponent
+    FlashcardComponent,
+    FlashcardCreateComponent
   ],
   imports: [
     BrowserModule,
