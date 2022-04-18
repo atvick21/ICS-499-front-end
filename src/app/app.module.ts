@@ -44,7 +44,7 @@ import { FlashcardCreateComponent } from './components/flashcard-create/flashcar
     QuizComponent,
     CompoundComponent,
     TabsComponent,
-    UserComponent
+    UserComponent,
     FlashcardListComponent,
     FlashcardComponent,
     FlashcardCreateComponent
