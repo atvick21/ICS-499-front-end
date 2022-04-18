@@ -1,2 +1,41 @@
-<router-outlet></router-outlet>
+<router-outlet>
+    <mat-drawer-container autosize>
+        <app-tabs></app-tabs>
+            <mat-toolbar>
+                <button mat-icon-button (click)="drawer.toggle()" class="example-icon" aria-label="Example icon-button with menu icon">
+                    <mat-icon>menu</mat-icon>
+                </button>
+                <span>Welcome to the Chemistry Lab</span>
+                <!-- <span class="example-spacer"></span> -->
+                <!-- <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+                    <mat-icon>favorite</mat-icon>
+                </button>
+                <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+                    <mat-icon>share</mat-icon>
+                </button> -->
+                <div class="profileInfo" [hidden]="!isLoggedIn">
+                    <span class="name">{{user?.firstName}}</span>
+                    <img height="40" width="40" src="{{user?.profileImgUrl}}" class="rounded-circle img-fluid img-thumbnail" alt="" />
+                </div>
+            </mat-toolbar>
+
+        <mat-drawer #drawer mode="side">
+            <!-- <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+            <button (click)="showFiller = !showFiller" mat-raised-button>
+                Toggle extra text
+            </button> -->
+            <nav>
+                <button [hidden]="isLoggedIn" (click)="onClickLogin()" mat-raised-button>
+                Login
+                </button>
+                <button [hidden]="!isLoggedIn" (click)="onClickLogout()" mat-raised-button>
+                Logout
+                </button>
+                <button [hidden]="!isAdmin" (click)="onClickUserManagement()" mat-raised-button color="accent">
+                User Managment
+                </button>
+            </nav>
+        </mat-drawer>
+    </mat-drawer-container>
+</router-outlet>
 <notifier-container></notifier-container>

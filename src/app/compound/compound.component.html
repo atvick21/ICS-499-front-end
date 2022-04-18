@@ -1,0 +1,10 @@
+<div class="compound-title">
+  <h1>Elements in Compound</h1>
+</div>
+<ng-container *ngIf="elementsInCompound.length > 0">
+  <!--    <p>Interacted element: {{interactedElement.symbol}}</p>-->
+  <div fxLayout="row" class="compound">
+    <app-element *ngFor="let element of elementsInCompound; index as i" [element]="element" (click)="removeElementFromCompound(i, element)"></app-element>
+    <button (click)="validateCompound()">Validate Compound</button>
+  </div>
+</ng-container>
