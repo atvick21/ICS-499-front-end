@@ -1,0 +1,18 @@
+<div [ngClass]="flipped ? 'card flip' : 'card'" [style.height]="height + 'px'" (click)="setBodyFlip($event)">
+  <div #frontEl class="front">
+      {{flashcard.question}}
+      <!--<div className="flashcard-options">
+          <div class="flashcard-option" *ngFor="let option of flashcard.options; let i = index">
+              <label class="form-check-label" for="tag{{option}}">
+                  <input
+                    type="checkbox"
+                    id="tag{{option}}"
+                    name="tag{{option}}"
+                    (change)="changeCheckbox(option,i,$event)">
+                  {{option}}
+              </label>
+          </div>
+      </div>-->
+  </div>
+  <div #backEl class="back">{{flashcard.answer}}</div>
+</div>
