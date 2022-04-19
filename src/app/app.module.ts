@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -58,8 +58,7 @@ import { TabsComponent } from './tabs/tabs.component';
     FlexLayoutModule,
     MatIconModule,
     MatSidenavModule,
-    MatSnackBarModule,
-    HttpClientXsrfModule.withOptions({cookieName: 'XSRF-TOKEN'})
+    MatSnackBarModule
   ],
   providers: [NotificationService, AuthenticationGuard, AuthenticationService, ElementService, UserService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
