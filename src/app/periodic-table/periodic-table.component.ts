@@ -45,12 +45,14 @@ export class PeriodicTableComponent implements OnInit, OnDestroy {
           // this.refreshing = false;
           if(showNotification) {
             this._snackBar.open("loaded elements", "close", {
-              duration: 5 * 1000,
+              duration: 2 * 1000,
             });
           }
         },
         error: (errorResponse: HttpErrorResponse) => {
-          this._snackBar.open(errorResponse.error.message, "close");
+          this._snackBar.open(errorResponse.error.message, "close", {
+            duration: 2 * 1000,
+          });
         }
       })
     );
