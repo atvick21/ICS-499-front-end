@@ -1,0 +1,10 @@
+.container {
+  margin: 1rem 2rem;
+}
+
+.card-grid {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
