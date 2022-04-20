@@ -13,7 +13,6 @@ export class CompoundComponent implements OnInit {
   private eventsSubscription: Subscription;
   elementsInCompound: Element[] = [];
   atomsInCompound: Map<String, number> = new Map();
-  @Input() isPeriodicTable: Boolean;
   @Input() interactedElement: Element;
   @Input() events: Observable<Element>;
 
