@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Element } from '../model/element.model';
 import { ElementService } from '../service/element.service';
 
@@ -20,6 +20,9 @@ export class PeriodicTableComponent implements OnInit, OnDestroy {
   interactedElement: Element;
   eventsSubject: Subject<Element> = new Subject<Element>();
   isCompound = false;
+  added: number;
+
+  @Output() sendElementMessage = new EventEmitter<Element>();
   
   constructor(private elementService: ElementService, private _snackBar: MatSnackBar) { }
 
@@ -27,13 +30,14 @@ export class PeriodicTableComponent implements OnInit, OnDestroy {
     this.getElements(true);
   }
 
-  public receiveMessage($event) {
-    this.interactedElement = $event;
-    this.emitInteractedEvent($event);
-  }
-
-  public emitInteractedEvent(element: Element) {
-    this.eventsSubject.next(element);
+  // select element event
+  public selectElement(event: { target: any; }) {
+    let elmIndex = event.target.attributes.id?.value - 1;
+    this.interactedElement = this.elements[elmIndex];
+    if(this.interactedElement) {
+      this.sendElementMessage.emit(this.interactedElement);
+      console.log(this.interactedElement);
+    }
   }
 
   async getElements(showNotification: boolean) {

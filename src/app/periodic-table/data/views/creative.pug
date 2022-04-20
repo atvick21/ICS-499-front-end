@@ -2,8 +2,8 @@
 
 // ELEMENT MIXIN TEMPLATE
 mixin element(number, symbol, name, mass, added, material, position)
-  .element(class=position, class=material)
-    input.activate(type='radio', name='elements')
+  .element(class=position class=material, (click)="selectElement($event)")
+    input.activate(type='radio', name='elements', id=number)
     input.deactivate(type='radio', name='elements')
     .overlay
     .square
