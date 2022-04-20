@@ -10,7 +10,7 @@ import {Subject} from "rxjs";
 @Component({
   selector: 'periodic-table',
   templateUrl: './periodic-table.component.html',
-  styleUrls: ['./periodic-table.component.scss']
+  styleUrls: ['./periodic-table.component.sass']
 })
 export class PeriodicTableComponent implements OnInit, OnDestroy {
   private subs = new SubSink();
