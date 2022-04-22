@@ -5,7 +5,7 @@ import { ElementService } from '../service/element.service';
 import { SubSink } from 'subsink';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
-import {Subject} from "rxjs";
+import { Subject } from "rxjs";
 
 @Component({
   selector: 'periodic-table',
@@ -19,8 +19,7 @@ export class PeriodicTableComponent implements OnInit, OnDestroy {
   pageTitle: string = 'Sandbox'
   interactedElement: Element;
   eventsSubject: Subject<Element> = new Subject<Element>();
-  isCompound = false;
-  added: number;
+  added: number = 0;
 
   @Output() sendElementMessage = new EventEmitter<Element>();
   
