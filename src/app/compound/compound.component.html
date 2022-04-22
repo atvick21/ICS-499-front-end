@@ -1,17 +1,14 @@
-<div class="compound-title">
-  <h1>Elements in Compound</h1>
-</div>
-
-<ng-container *ngIf="elementsInCompound.length > 0">
-     <!-- <p>Interacted element: {{interactedElement?.symbol}}</p> -->
-  <div fxLayout="row" class="compound">
-    <div *ngFor="let element of elementsInCompound; index as i" (click)="removeElementFromCompound(i, element)">
-      <div class="container">
-        <div>{{element?.symbol}}</div>
+<h1 id="title">Compound</h1>
+<div>
+  <ng-container *ngIf="elementsInCompound.length > 0">
+    <div class="compound">
+      <div class="element-in-compound" *ngFor="let element of elementsInCompound; index as i" (click)="removeElementFromCompound(i, element)" 
+        [ngStyle]="{'background-color': '#' + element?.cPKHexColor}">
+          {{element?.symbol}}
       </div>
     </div>
-    <div>
-      <button (click)="validateCompound()">Validate Compound</button>
-    </div>
+  </ng-container>
+  <div id="validate-btn" *ngIf="elementsInCompound.length > 0">
+    <button mat-raised-button color="primary" (click)="validateCompound()">Validate Compound</button>
   </div>
-</ng-container>
+</div>
