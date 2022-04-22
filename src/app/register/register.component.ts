@@ -43,6 +43,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
       )
     );
   }
+
+  public onClickLogin(): void {
+    document.getElementById("close-register-modal").click();
+  }
   
   private sendNotification(notificationType: NotificationType, message: string): void {
     if (message) {
