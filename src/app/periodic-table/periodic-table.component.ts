@@ -20,6 +20,7 @@ export class PeriodicTableComponent implements OnInit, OnDestroy {
   interactedElement: Element;
   eventsSubject: Subject<Element> = new Subject<Element>();
   added: number = 0;
+  categories: string[] = ['alkali-metals','alkaline-earth-metals','lanthanoids','actinoids','transition-metals','post-transition-metals','metalloids','other-nonmetals','noble-gasses','unknown'];
 
   @Output() sendElementMessage = new EventEmitter<Element>();
   
