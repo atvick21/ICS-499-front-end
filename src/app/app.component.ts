@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotificationType } from './enum/notification-type.enum';
-import { Role } from './enum/role.enum';
 import { User } from './model/user';
 import { AuthenticationService } from './service/authentication.service';
 import { AuthorizationService } from './service/authorization.service';
@@ -32,10 +31,6 @@ export class AppComponent implements OnInit {
   getLoggedIn(newItem: User) {
     this.user = newItem;
     this.isLoggedIn = true;
-  }
-
-  public onClickUserManagement(): void {
-    this.router.navigate(['/user/management']);
   }
 
   public onClickLogout(): void {
