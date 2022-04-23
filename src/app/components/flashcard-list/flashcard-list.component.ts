@@ -1,9 +1,8 @@
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/service/authentication.service';
 import { FlashCardService } from 'src/app/service/flashcard.service';
-import { FlashcardComponent } from '../flashcard/flashcard.component';
 
 @Component({
   selector: 'app-flashcard-list',
@@ -18,7 +17,7 @@ export class FlashcardListComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.authenticationService.isUserLoggedIn()) {
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/main/periodictable');
     } 
     else {
       this.getAllFlashcard();

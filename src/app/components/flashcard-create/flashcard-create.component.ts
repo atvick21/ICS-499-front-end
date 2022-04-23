@@ -17,7 +17,7 @@ export class FlashcardCreateComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.authenticationService.isUserLoggedIn()) {
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/main/periodictable');
     } 
   }
 
