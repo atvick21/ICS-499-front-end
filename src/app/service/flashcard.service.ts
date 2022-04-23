@@ -15,11 +15,17 @@ export class FlashCardService {
   constructor(private http: HttpClient) { }
 
   public createFlashcard(item: any): Observable<any> {
+    console.log(item);
     return this.http.post<any>(`${this.host}/flashcards/add`, item);
   }
 
   public getAllFlashcard(): Observable<any> {
     return this.http.get<any>(`${this.host}/flashcards/all`);
+  }
+
+  public getFlashcardsByUserId(userId: string): Observable<any> {
+    console.log("getting flashcards for userId:", userId);
+    return this.http.get<any>(`${this.host}/flashcards/userflashcards/${userId}`);
   }
 
 }

@@ -16,17 +16,25 @@ export class FlashcardListComponent implements OnInit {
   constructor(private router: Router, private service: FlashCardService, private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
-    if (!this.authenticationService.isUserLoggedIn()) {
+    if (!this.authenticationService.isUserLoggedIn())
       this.router.navigateByUrl('/main/periodictable');
-    } 
-    else {
-      this.getAllFlashcard();
-    }
-
+    else
+      this.getAllFlashcardsByUserId(this.authenticationService.getUserFromLocalCache().userId);
   }
 
   public getAllFlashcard(): void {
     this.service.getAllFlashcard().subscribe(
+      (response: any) => {
+        this.flashCards = response;
+      },
+      (errorResponse: HttpErrorResponse) => {
+        console.error(errorResponse);
+      }
+    );
+  }
+
+  public getAllFlashcardsByUserId(userId: string): void {
+    this.service.getFlashcardsByUserId(userId).subscribe(
       (response: any) => {
         this.flashCards = response;
       },

@@ -27,10 +27,8 @@
             <span class="help-block" style="color:red;" *ngIf="answerInput.invalid && answerInput.touched">Please
               enter a answer.</span>
             <div class="d-flex justify-content-center mt-3 login_container">
-              <button type="submit" [disabled]="loginForm.invalid || showLoading" name="button" class="btn login_btn">
-                <i *ngIf="showLoading" class="fa fa-spinner fa-spin"></i>&nbsp;&nbsp;
-                <span *ngIf="showLoading">Loading...</span>
-                <span *ngIf="!showLoading">Submit</span>
+              <button type="submit" [disabled]="loginForm.invalid" name="button" class="btn login_btn">
+                <span>Submit</span>
               </button>
             </div>
           </form>
