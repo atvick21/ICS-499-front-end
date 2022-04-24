@@ -5,38 +5,26 @@
                 <mat-icon>menu</mat-icon>
             </button>
             <span>Welcome to the Chemistry Lab</span>
-            <!-- <span class="example-spacer"></span> -->
-            <!-- <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-                <mat-icon>favorite</mat-icon>
-            </button>
-            <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-                <mat-icon>share</mat-icon>
-            </button> -->
             <div class="profileInfo" [hidden]="!isLoggedIn">
                 <span class="name">{{user?.firstName}}</span>
                 <button (click)="onClickProfile()"><img height="40" width="40" src="{{user?.profileImgUrl}}" class="rounded-circle img-fluid img-thumbnail" alt="" /></button>
-                
             </div>
         </mat-toolbar>
-    
     <mat-drawer #drawer mode="side">
-        <!-- <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-        <button (click)="showFiller = !showFiller" mat-raised-button>
-            Toggle extra text
-        </button> -->
         <nav>
             <button data-toggle="modal" data-target="#loginModal" [hidden]="isLoggedIn" mat-raised-button>
-            Login
+                Login
             </button>
             <button [hidden]="!isLoggedIn" (click)="onClickLogout()" mat-raised-button>
-            Logout
+                Logout
             </button>
-            <button [hidden]="!isAdmin" (click)="onClickUserManagement()" mat-raised-button color="accent">
-            User Managment
+            <button [hidden]="!isAdmin" routerLink="/user/management" mat-raised-button color="accent">
+                User Managment
             </button>
         </nav>
     </mat-drawer>
-    <app-tabs></app-tabs>
+    <!-- child [isLoggedIn] bound to current "isLoggedIn" -->
+    <app-tabs [isLoggedIn]="isLoggedIn"></app-tabs>
 </mat-drawer-container>
 
 <!-- login modal -->
@@ -44,11 +32,20 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
+                <!-- the child newItemEvent of login sends $event to parent getLoggedIn of app-component -->
                 <app-login (newItemEvent)="getLoggedIn($event)"></app-login>
             </div>
-            <!-- <div class="modal-footer"> -->
-                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-login-modal">Close</button> -->
-            <!-- </div> -->
+        </div>
+    </div>
+</div>
+
+<!-- register modal -->
+<div class="modal fade" id="registerModal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <app-register></app-register>
+            </div>
         </div>
     </div>
 </div>

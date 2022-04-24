@@ -1,0 +1,53 @@
+- var categories = ['alkali-metals','alkaline-earth-metals','lanthanoids','actinoids','transition-metals','post-transition-metals','metalloids','other-nonmetals','noble-gasses','unknown']
+
+// ELEMENT MIXIN TEMPLATE
+mixin element(number, symbol, name, mass, added, material, position)
+  .element(class=position class=material, (click)="selectElement($event)")
+    input.activate(type='radio', name='elements', id=number)
+    input.deactivate(type='radio', name='elements')
+    .overlay
+    .square
+      .model
+      .atomic-number= number
+      .label
+        .symbol= symbol
+        .name= name
+      .atomic-mass= mass
+      div.atomic-weight= added
+
+// PLACEHOLDER MIXIN TEMPLATE
+mixin placeholder(number, material, column, row)
+  .placeholder(class=material, class='c'+column, class='r'+row)
+    .square= number
+
+html(lang='en')
+    head
+      title ChemLab
+      link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css')
+      link(rel='stylesheet', href="style.css")
+
+.wrapper
+  each item in categories
+    input.category-toggle(type='radio', id=item, name='categories')
+    input.category-cancel(type='radio', id='cancel' name='categories')
+  .periodic-table
+    each element in elements
+        +element(element.atomicNumber, element.symbol, element.name, element.atomicMass, '{{added}}', element.groupBlock, element.tablePosition)    
+
+    +placeholder('57-71', 'lanthanoid', 3, 6)
+    +placeholder('89-103', 'actinoid', 3, 7)
+    
+    .gap.c3.r8
+    
+    .key
+      .row
+        label.alkali-metal(for='alkali-metals') Alkali Metals
+        label.alkaline-earth-metal(for='alkaline-earth-metals') Alkaline Earth Metals
+        label.lanthanoid(for='lanthanoids') Lanthanoids
+        label.actinoid(for='actinoids') Aktinoids
+        label.transition-metal(for='transition-metals') Transition Metals
+        label.post-transition-metal(for='post-transition-metals') Post-Transition Metals
+        label.metalloid(for='metalloids') Metalloids
+        label.other-nonmetal(for='other-nonmetals') Other Nonmetals
+        label.noble-gas(for='noble-gasses') Noble Gasses
+        label.unknown(for='unknown') Unknown

@@ -1,267 +1,28 @@
-@use "sass:math";
-$bgColor: #101318;
-$gridGap: 5px;
-
-$alkaliMetalColor: #ecbe59;
-$alkalineEarthMetalColor: #dee955;
-$lanthanoidColor: #ec77a3;
-$actinoidColor: #c686cc;
-$transitionMetalColor: #fd8572;
-$postTransitionMetalColor: #4cddf3;
-$metalloidColor: #3aefb6;
-$otherNonmetalColor: #52ee61;
-$nobleGasColor: #759fff;
-$unknownColor: #cccccc;
-
-.compound-title {
-  display: flex;
-  justify-content: center;
-  font-weight: bold;
+#title {
+  display: block;
+  text-align: center;
 }
+
 .compound {
-  display: inline-grid;
-  flex-wrap: wrap;
+  border: 5px;
+  border-style: solid;
+  width: fit-content;
+  margin: 10px;
 }
 
-// --------------------------------------
-// ELEMENT
-.element {
-  position: relative;
-  font-size: 0.5vw;
-  padding-bottom: 100%;
-  cursor: pointer;
-  color: #fff;
-  transition: 500ms;
-
-  .square {
-    position: absolute;
-    left: 0;
-    //top: 0;
-    width: 100%;
-    height: 100%;
-    border: 2px solid;
-    box-sizing: border-box;
-    //background: $bgColor;
-    //display: flex;
-    //flex-direction: column;
-    //justify-content: center;
-    align-items: center;
-    //transition-property: transform, z-index, left, right, top, bottom;
-    //transition-duration: 100ms, 0ms, 200ms, 200ms, 200ms, 200ms;
-    //transition-delay: 0ms, 100ms, 0ms, 0ms, 0ms, 0ms;
-  }
-  .atomic-number {
-    position: absolute;
-    left: 0;
-    top: 0;
-    padding: 2px;
-  }
-  .label {
-    text-align: center;
-    transition: 200ms;
-  }
-  .symbol {
-    font-size: 1.7vw;
-  }
-  .name {
-    font-size: 0.7vw;
-  }
-  .atomic-mass {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 2px;
-    text-align: center;
-  }
-  .atomic-weight {
-    position: absolute;
-    right: 0;
-    top: 0;
-    list-style: none;
-    margin: 0;
-    padding: 2px;
-    opacity: 0;
-    transition: 200ms;
-    text-align: right;
-  }
-
-  input[type="radio"] {
-    -webkit-appearance: none;
-    position: absolute;
-    z-index: 2;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
-    outline: none;
-    display: inline-flex;
-    flex: 0 1 calc(1% - 10px);
-    &.activate {
-      &:hover ~ .square {
-        z-index: 2;
-        transform: scale(1.35);
-        transition-delay: 0ms;
-        outline: none;
-        pointer-events: none;
-      }
-      &:checked + input[type="radio"].deactivate {
-        z-index: 3;
-        pointer-events: all;
-      }
-    }
-  }
-}
-
-// COLORS
-.alkali-metal {
-  color: $alkaliMetalColor;
-}
-.alkaline-earth-metal {
-  color: $alkalineEarthMetalColor;
-}
-.lanthanoid {
-  color: $lanthanoidColor;
-}
-.actinoid {
-  color: $actinoidColor;
-}
-.transition-metal {
-  color: $transitionMetalColor;
-}
-.post-transition-metal {
-  color: $postTransitionMetalColor;
-}
-.metalloid {
-  color: $metalloidColor;
-}
-.other-nonmetal {
-  color: $otherNonmetalColor;
-}
-.noble-gas {
-  color: $nobleGasColor;
-}
-.unknown {
-  color: $unknownColor;
-}
-
-
-// --------------------------------------
-// ROWS & COLUMNS
-@for $i from 1 through 10 {
-  .r#{$i} {
-    grid-row: $i;
-  }
-}
-@for $i from 1 through 18 {
-  .c#{$i} {
-    grid-column: $i;
-  }
-
-
-  // --------------------------------------
-  // SHIFT EDGE ELEMENTS ON ZOOM
-}
-//.r1 input[type="radio"].activate:checked ~ .square {
-//  top: 100%;
-//}
-//.r10 input[type="radio"].activate:checked ~ .square {
-//  top: -100%;
-//}
-//.c1 input[type="radio"].activate:checked ~ .square {
-//  left: 100%;
-//}
-//.c18 input[type="radio"].activate:checked ~ .square {
-//  left: -100%;
-//}
-
-
-
-// --------------------------------------
-// KEY
-.key {
-  position: relative;
-  z-index: 1;
-  grid-row: 1;
-  grid-column-start: 3;
-  grid-column-end: 17;
-  font-size: 0.8vw;
-  line-height: 1.5;
-  display: flex;
-  align-items: center;
-  pointer-events: none;
-  user-select: none;
-
-  .row {
-    position: relative;
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-
-    label {
-      opacity: 0.85;
-      cursor: pointer;
-      transition: 120ms;
-      pointer-events: all;
-
-      &:hover {
-        opacity: 1 !important;
-      }
-
-      // --------------------------------------
-      // CATEGORY TOGGLES
-    }
-  }
-}
-#alkali-metals:checked ~ .periodic-table .element:not(.alkali-metal),
-#alkaline-earth-metals:checked ~ .periodic-table .element:not(.alkaline-earth-metal),
-#lanthanoids:checked ~ .periodic-table .element:not(.lanthanoid),
-#actinoids:checked ~ .periodic-table .element:not(.actinoid),
-#transition-metals:checked ~ .periodic-table .element:not(.transition-metal),
-#post-transition-metals:checked ~ .periodic-table .element:not(.post-transition-metal),
-#metalloids:checked ~ .periodic-table .element:not(.metalloid),
-#other-nonmetals:checked ~ .periodic-table .element:not(.other-nonmetal),
-#noble-gasses:checked ~ .periodic-table .element:not(.noble-gas),
-#unknown:checked ~ .periodic-table .element:not(.unknown),
-#alkali-metals:checked ~ .periodic-table .placeholder,
-#alkaline-earth-metals:checked ~ .periodic-table .placeholder,
-#lanthanoids:checked ~ .periodic-table .placeholder:not(.lanthanoid),
-#actinoids:checked ~ .periodic-table .placeholder:not(.actinoid),
-#transition-metals:checked ~ .periodic-table .placeholder,
-#post-transition-metals:checked ~ .periodic-table .placeholder,
-#metalloids:checked ~ .periodic-table .placeholder,
-#other-nonmetals:checked ~ .periodic-table .placeholder,
-#noble-gasses:checked ~ .periodic-table .placeholder,
-#unknown:checked ~ .periodic-table .placeholder {
-  opacity: 0.15;
-  pointer-events: none;
-}
-#alkali-metals:checked ~ .periodic-table .key label:not(.alkali-metal),
-#alkaline-earth-metals:checked ~ .periodic-table .key label:not(.alkaline-earth-metal),
-#lanthanoids:checked ~ .periodic-table .key label:not(.lanthanoid),
-#actinoids:checked ~ .periodic-table .key label:not(.actinoid),
-#transition-metals:checked ~ .periodic-table .key label:not(.transition-metal),
-#post-transition-metals:checked ~ .periodic-table .key label:not(.post-transition-metal),
-#metalloids:checked ~ .periodic-table .key label:not(.metalloid),
-#other-nonmetals:checked ~ .periodic-table .key label:not(.other-nonmetal),
-#noble-gasses:checked ~ .periodic-table .key label:not(.noble-gas),
-#unknown:checked ~ .periodic-table .key label:not(.unknown) {
-  opacity: 0.65;
-}
-.category-toggle:not(#lanthanoids):not(#actinoids):checked ~ .periodic-table .gap {
-  opacity: 0.5;
-}
-.category-toggle:checked ~ .category-cancel {
-  visibility: visible;
-  pointer-events: all;
+.element-in-compound {
+  text-align: center;
+  display: inline-block;
+  border: 5px;
+  border-style: solid;
+  padding: 20px;
+  margin: 5px;
+  width: 65px;
+  height: 65px;
+  background-size: cover;
   cursor: pointer;
 }
 
-.center {
-  display: flex;
-  height: 300px;
-  justify-content: center;
-  align-items: center;
+#validate-btn {
+  margin: 25px;
 }

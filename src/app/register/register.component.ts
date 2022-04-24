@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.authenticationService.isUserLoggedIn()) {
-      this.router.navigateByUrl('/user/management');
+      this.router.navigateByUrl('/main/periodictable');
     }
   }
 
@@ -42,6 +42,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
         }
       )
     );
+  }
+
+  public onClickLogin(): void {
+    document.getElementById("close-register-modal").click();
   }
   
   private sendNotification(notificationType: NotificationType, message: string): void {

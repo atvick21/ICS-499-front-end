@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import { Element } from '../model/element.model';
 import {Observable, Subscription} from "rxjs";
 import {CompoundService} from "../service/compound.service";
+import { AuthenticationService } from '../service/authentication.service';
 
 @Component({
   selector: 'app-compound',
@@ -13,11 +14,10 @@ export class CompoundComponent implements OnInit {
   private eventsSubscription: Subscription;
   elementsInCompound: Element[] = [];
   atomsInCompound: Map<String, number> = new Map();
-  @Input() isPeriodicTable: Boolean;
   @Input() interactedElement: Element;
   @Input() events: Observable<Element>;
 
-  constructor(private compoundService: CompoundService) { }
+  constructor(private compoundService: CompoundService, private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.eventsSubscription = this.events.subscribe((element) => this.addInteractedElements(element));
@@ -58,7 +58,6 @@ export class CompoundComponent implements OnInit {
     } else {
       this.atomsInCompound.set(element.symbol, tempAtoms - 1)
     }
-
   }
 
   public validateCompound() {
@@ -66,18 +65,31 @@ export class CompoundComponent implements OnInit {
     // console.log(this.elementsInCompound);
     let data = [];
 
+    // build list of elements
     for(let [key, value] of this.atomsInCompound.entries()) {
       data.push({"element": key, "numberOfAtoms": value});
     }
 
-    let payload = {
-      data,
-      userId: "5523153010"
-    }
-
-    this.compoundService
+    // to do: the subscribe method should call back an HTTP error that sends a front-end notification 
+    if(this.authenticationService.isUserLoggedIn()) {
+      let payload = {
+        data,
+        userId: this.authenticationService.getUserFromLocalCache().userId
+      }
+      // careful of memory leak
+      this.compoundService
+        .validate(payload)
+          .subscribe(response => console.log("You've discovered: " + response.body.title));
+    } else {
+      console.warn("Unable to save findings, no user is logged in.");
+      let payload = {
+        data,
+        userId: null
+      }
+      // careful of memory leak
+      this.compoundService
       .validate(payload)
-      .subscribe(response => console.log("You've discovered: " + response.body.title))
-      // .unsubscribe()
+        .subscribe(response => console.log("You've discovered: " + response.body.title));
+    }
   }
 }

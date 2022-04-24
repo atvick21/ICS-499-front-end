@@ -37,7 +37,7 @@
       </div>
       <div class="mt-4 modal-footer">
         <div class="d-flex justify-content-center links">
-          Don't have an account? <a (click)="onClickRegister()" routerLink="/register" class="ml-2" style="color: #2C3E50;" > Sign Up</a>
+          Don't have an account? <a data-toggle="modal" data-target="#registerModal" (click)="onClickRegister()" class="ml-2">Sign Up</a>
         </div>
         <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-login-modal">Close</button>
       </div>
