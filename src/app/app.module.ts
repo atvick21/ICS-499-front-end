@@ -24,7 +24,6 @@ import { PeriodicTableComponent } from './periodic-table/periodic-table.componen
 import { QuizComponent } from './quiz/quiz.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { ElementComponent } from './element/element.component';
 import { ElementService } from './service/element.service';
 import { CompoundComponent } from './compound/compound.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -38,7 +37,6 @@ import { FlashcardCreateComponent } from './components/flashcard-create/flashcar
     AppComponent,
     LoginComponent,
     PeriodicTableComponent,
-    ElementComponent,
     RegisterComponent,
     UserComponent,
     QuizComponent,

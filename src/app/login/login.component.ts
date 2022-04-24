@@ -14,11 +14,10 @@ import { NotificationService } from '../service/notification.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnDestroy {
   public showLoading: boolean;
   private subscriptions: Subscription[] = [];
   public isLoggedIn: boolean;
-  private user: User;
 
   @Output() newItemEvent = new EventEmitter<User>();
 
@@ -27,16 +26,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private loggedIn(value: User) {
     this.newItemEvent.emit(value);
-  }
-
-  ngOnInit(): void {
-    // if (this.authenticationService.isUserLoggedIn()) {
-    //   this.sendNotification(NotificationType.WARNING, "You are already logged in.");
-    //   this.router.navigateByUrl('/main/periodictable');
-
-    // } else {
-    //   this.router.navigateByUrl('/main/periodictable');
-    // }
   }
 
   public onClickRegister(): void {

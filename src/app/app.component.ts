@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotificationType } from './enum/notification-type.enum';
-import { Role } from './enum/role.enum';
 import { User } from './model/user';
 import { AuthenticationService } from './service/authentication.service';
+import { AuthorizationService } from './service/authorization.service';
 import { NotificationService } from './service/notification.service';
 
 @Component({
@@ -16,29 +16,25 @@ export class AppComponent implements OnInit {
   public user: User;
   public isLoggedIn: boolean;
 
-  constructor(private authService: AuthenticationService, private router: Router, 
-    private notificationService: NotificationService) {}
-
-  getLoggedIn(newItem: User) {
-    this.user = newItem;
-    this.isLoggedIn = true;
-  }
+  constructor(private authenticationService: AuthenticationService, private authorizationService: AuthorizationService,
+     private router: Router, private notificationService: NotificationService) {}
 
   ngOnInit(): void {
-    if (this.authService.isUserLoggedIn()) {
-      this.user = this.authService.getUserFromLocalCache();
+    if (this.authenticationService.isUserLoggedIn()) {
+      this.user = this.authenticationService.getUserFromLocalCache();
       this.isLoggedIn = true;
     } else {
       this.isLoggedIn = false;
     }
   }
 
-  public onClickUserManagement(): void {
-    this.router.navigate(['/user/management']);
+  getLoggedIn(newItem: User) {
+    this.user = newItem;
+    this.isLoggedIn = true;
   }
 
   public onClickLogout(): void {
-    this.authService.logOut();
+    this.authenticationService.logOut();
     this.sendNotification(NotificationType.SUCCESS, "You've been successfully logged out.");
     this.isLoggedIn = false;
     this.user = null;
@@ -48,12 +44,8 @@ export class AppComponent implements OnInit {
 
   public get isAdmin(): boolean {
     if(this.isLoggedIn)
-      return this.getUserRole() === Role.ADMIN || this.getUserRole() === Role.SUPER_ADMIN;
+      return this.authorizationService.isAdmin;
     else return false;
-  }
-
-  private getUserRole(): string {
-    return this.authService.getUserFromLocalCache().role;
   }
 
   private sendNotification(notificationType: NotificationType, message: string): void {
