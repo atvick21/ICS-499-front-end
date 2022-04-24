@@ -14,7 +14,8 @@
             </button> -->
             <div class="profileInfo" [hidden]="!isLoggedIn">
                 <span class="name">{{user?.firstName}}</span>
-                <img height="40" width="40" src="{{user?.profileImgUrl}}" class="rounded-circle img-fluid img-thumbnail" alt="" />
+                <button (click)="onClickProfile()"><img height="40" width="40" src="{{user?.profileImgUrl}}" class="rounded-circle img-fluid img-thumbnail" alt="" /></button>
+                
             </div>
         </mat-toolbar>
     

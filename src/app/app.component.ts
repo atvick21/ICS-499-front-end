@@ -37,6 +37,10 @@ export class AppComponent implements OnInit {
     this.router.navigate(['/user/management']);
   }
 
+  public onClickProfile(): void {
+    this.router.navigate(['/profile']);
+  }
+
   public onClickLogout(): void {
     this.authService.logOut();
     this.sendNotification(NotificationType.SUCCESS, "You've been successfully logged out.");
