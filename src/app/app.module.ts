@@ -31,6 +31,8 @@ import { TabsComponent } from './tabs/tabs.component';
 import { FlashcardListComponent } from './components/flashcard-list/flashcard-list.component';
 import { FlashcardComponent } from './components/flashcard/flashcard.component';
 import { FlashcardCreateComponent } from './components/flashcard-create/flashcard-create.component';
+import { ProfileComponent } from './profile/profile.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { FlashcardCreateComponent } from './components/flashcard-create/flashcar
     UserComponent,
     FlashcardListComponent,
     FlashcardComponent,
-    FlashcardCreateComponent
+    FlashcardCreateComponent,
+    ProfileComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
