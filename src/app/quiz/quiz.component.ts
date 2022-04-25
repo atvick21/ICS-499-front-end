@@ -2,16 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Quiz } from '../model/quiz';
 import { QuizService } from '../service/quiz.service';
+import {HttpErrorResponse} from "@angular/common/http";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
-  selector: 'app-quiz',
   templateUrl: './quiz.component.html',
   styleUrls: ['./quiz.component.scss']
 })
 export class QuizComponent implements OnInit {
   quiz : Quiz[] =[]
-  questions: string;
+  question: string;
   currentQuiz =0;
   answers: any;
   answerSelected: boolean;
@@ -19,13 +20,12 @@ export class QuizComponent implements OnInit {
   incorrectAnswers =0;
   score = false;
   random : number;
-  constructor(private quizService: QuizService) { }
-  
+  constructor(private quizService: QuizService, private _snackBar: MatSnackBar) { }
+
     ngOnInit(): void {
-      this.quiz = this.quizService.getQuiz();
+      this.getQuizes();
       this.random = Math.floor(Math.random()*this.quiz.length)
-      
-  }
+      }
   onAnswer(option: boolean){
     this.answerSelected =true;
     setTimeout(()=>{
@@ -39,15 +39,27 @@ export class QuizComponent implements OnInit {
     else{
       this.incorrectAnswers++;
     }
-  
-    
+
+
   }
   displayScore(){
     this.score= true;
   }
- 
-  
- 
+
+  getQuizes() {
+    this.quizService.getQuiz().subscribe({
+      next: (response: Quiz[]) => {
+        this.quiz = response
+      },
+      error: (errorResponse: HttpErrorResponse) => {
+        this._snackBar.open(errorResponse.error.message, "close", {
+          duration: 2 * 1000,
+        });
+      }
+    });
+  }
+
+
+
 
 }
-
