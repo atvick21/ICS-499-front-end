@@ -44,22 +44,22 @@
                                 <form #editUserForm="ngForm">
                                     <div class="form-group">
                                         <label for="firstName">First Name</label>
-                                        <input type="text" name="firstName" [disabled]="!isManager" required
+                                        <input type="text" name="firstName"
                                             [(ngModel)]="editUser.firstName" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="lastName">Last Name</label>
-                                        <input type="text" name="lastName" [disabled]="!isManager" required
+                                        <input type="text" name="lastName"
                                             [(ngModel)]="editUser.lastName" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="username">Username</label>
-                                        <input type="text" name="username" [disabled]="!isManager" required
+                                        <input type="text" name="username"
                                             [(ngModel)]="editUser.username" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="email">Email</label>
-                                        <input type="email" name="email" [disabled]="!isManager" required
+                                        <input type="email" name="email"
                                             [(ngModel)]="editUser.email" class="form-control">
                                     </div>
                                 <div class="row">
@@ -85,34 +85,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-12 col-sm-5 offset-sm-1 mb-3">
-                                        <div class="mb-2"><b>Account Settings</b><small [hidden]="isManager"> (read only)</small></div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="custom-controls-stacked px-2">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input [disabled]="!isManager" id="active" name="active" type="checkbox"
-                                                            [(ngModel)]="user.active"
-                                                            class="custom-control-input">
-                                                        <label for="active" class="custom-control-label"> Active</label>
-                                                    </div>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input [disabled]="!isManager" id="notLocked" name="notLocked" type="checkbox"
-                                                            [(ngModel)]="user.notLocked"
-                                                            class="custom-control-input">
-                                                        <label for="notLocked" class="custom-control-label"> Unlocked</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" (click)="onUpdateCurrentUser(editUserForm.value)"
-                                [disabled]="!isManager || editUserForm.invalid" class="btn btn-primary">Save Changes
+                                 class="btn btn-primary">Save Changes
                             </button>
                         </div>
                             </div>
