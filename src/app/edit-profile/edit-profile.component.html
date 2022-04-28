@@ -39,39 +39,87 @@
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-body">
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Full Name</h6>
+                        <div class="modal-body">
+                            <div class="">
+                                <form #editUserForm="ngForm">
+                                    <div class="form-group">
+                                        <label for="firstName">First Name</label>
+                                        <input type="text" name="firstName" [disabled]="!isManager" required
+                                            [(ngModel)]="editUser.firstName" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastName">Last Name</label>
+                                        <input type="text" name="lastName" [disabled]="!isManager" required
+                                            [(ngModel)]="editUser.lastName" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="username">Username</label>
+                                        <input type="text" name="username" [disabled]="!isManager" required
+                                            [(ngModel)]="editUser.username" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" name="email" [disabled]="!isManager" required
+                                            [(ngModel)]="editUser.email" class="form-control">
+                                    </div>
+                                <div class="row">
+                                    <div class="col mb-3">
+                                        <div class="form-group">
+                                            <label>Role</label><small [hidden]="isAdmin"> (read only)</small>
+                                            <select name="role" [disabled]="!isAdmin" required
+                                                [(ngModel)]="user.role"
+                                                class="form-control">
+                                                <option [hidden]="!isAdmin"
+                                                    value="ROLE_USER">USER</option>
+                                                <option [hidden]="!isAdmin"
+                                                    value="ROLE_HR">HR</option>
+                                                <option [hidden]="!isAdmin"
+                                                    value="ROLE_MANAGER">MANAGER
+                                                </option>
+                                                <option [hidden]="!isAdmin"
+                                                    value="ROLE_ADMIN">ADMIN</option>
+                                                <option [hidden]="!isAdmin"
+                                                    value="ROLE_SUPER_ADMIN">SUPER ADMIN
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" value="John Doe">
+                                <div class="row">
+                                    <div class="col-12 col-sm-5 offset-sm-1 mb-3">
+                                        <div class="mb-2"><b>Account Settings</b><small [hidden]="isManager"> (read only)</small></div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="custom-controls-stacked px-2">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input [disabled]="!isManager" id="active" name="active" type="checkbox"
+                                                            [(ngModel)]="user.active"
+                                                            class="custom-control-input">
+                                                        <label for="active" class="custom-control-label"> Active</label>
+                                                    </div>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input [disabled]="!isManager" id="notLocked" name="notLocked" type="checkbox"
+                                                            [(ngModel)]="user.notLocked"
+                                                            class="custom-control-input">
+                                                        <label for="notLocked" class="custom-control-label"> Unlocked</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" (click)="onUpdateCurrentUser(editUserForm.value)"
+                                [disabled]="!isManager || editUserForm.invalid" class="btn btn-primary">Save Changes
+                            </button>
+                        </div>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Email</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" value="john@example.com">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">User Name</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" value="">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-3"></div>
-                                <div class="col-sm-9 text-secondary">
-                                    <input type="button" class="btn btn-primary px-4" value="Save Changes">
-                                </div>
-                            </div>
-                       
+                        </div>
                     </div>
                 </div>
+                <!---
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card">
@@ -101,7 +149,6 @@
                         </div>
                     </div>
                 </div>
+                -->
             </div>
         </div>
-    </div>
-</div>
