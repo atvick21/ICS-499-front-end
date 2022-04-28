@@ -8,6 +8,7 @@ import { AuthenticationService } from '../service/authentication.service';
 import { NotificationService } from '../service/notification.service';
 import { SubSink } from 'subsink';
 import { NotificationType } from '../enum/notification-type.enum';
+import { Role } from '../enum/role.enum';
 
 @Component({
   selector: 'app-edit-profile',
@@ -37,6 +38,18 @@ export class EditProfileComponent implements OnInit {
     document.getElementById(buttonId).click();
   }
 
+  public get isManager(): boolean {
+    return this.isAdmin || this.getUserRole() === Role.MANAGER;
+  }
+
+  public get isAdmin(): boolean {
+    return this.getUserRole() === Role.ADMIN || this.getUserRole() === Role.SUPER_ADMIN;
+  }
+
+  private getUserRole(): string {
+    return this.authenticationService.getUserFromLocalCache().role;
+}
+
   private sendNotification(notificationType: NotificationType, message: string): void {
     if (message) {
       this.notificationService.notify(notificationType, message);
@@ -64,7 +77,7 @@ export class EditProfileComponent implements OnInit {
           this.users = response;
           this.refreshing = false;
           if(showNotification) {
-            this.sendNotification(NotificationType.SUCCESS, `${response.length} user(s) loaded successfully.`);
+            this.sendNotification(NotificationType.SUCCESS, `user loaded successfully.`);
           }
         },
         error: (errorResponse: HttpErrorResponse) => {
