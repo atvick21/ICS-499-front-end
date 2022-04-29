@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-//import { Quiz } from './quiz';
 import { environment } from 'src/environments/environment';
 import { Quiz } from '../model/quiz';
 	
@@ -53,7 +52,27 @@ import { Quiz } from '../model/quiz';
 					{option: "79.904", correct: false},
 					{option: "35.453", correct: true}
 				]
+			},
+			{
+				questions: "The atomic number of hydrogen is 1?",
+				answers: [
+					{option: "true", correct: true},
+					{option: "false", correct: false}
+				]
+
+			},
+			{
+				questions: "The symbol of calcium is H?",
+				answers: [
+					{option: "true", correct: false},
+					{option: "false", correct: true}
+				]
+
+
 			}
+			
+
+
 			
 			
 

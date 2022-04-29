@@ -23,13 +23,14 @@ export class QuizComponent implements OnInit {
   constructor(private quizService: QuizService, private _snackBar: MatSnackBar) { }
 
     ngOnInit(): void {
-      this.getQuizes();
-      this.random = Math.floor(Math.random()*this.quiz.length)
+      this.quiz = this.quizService.getQuiz();
+      this.random = Math.floor(Math.random()*this.quiz.length);
       }
   onAnswer(option: boolean){
     this.answerSelected =true;
     setTimeout(()=>{
       this.currentQuiz++;
+      this.random = Math.floor(Math.random() *this.quiz.length);
       this.answerSelected = false;
 
     },6000);
@@ -46,18 +47,18 @@ export class QuizComponent implements OnInit {
     this.score= true;
   }
 
-  getQuizes() {
-    this.quizService.getQuiz().subscribe({
-      next: (response: Quiz[]) => {
-        this.quiz = response
-      },
-      error: (errorResponse: HttpErrorResponse) => {
-        this._snackBar.open(errorResponse.error.message, "close", {
-          duration: 2 * 1000,
-        });
-      }
-    });
-  }
+  // getQuizes() {
+  //   this.quizService.getQuiz().subscribe({
+  //     next: (response: Quiz[]) => {
+  //       this.quiz = response
+  //     },
+  //     error: (errorResponse: HttpErrorResponse) => {
+  //       this._snackBar.open(errorResponse.error.message, "close", {
+  //         duration: 2 * 1000,
+  //       });
+  //     }
+  //   });
+  //}
 
 
 
