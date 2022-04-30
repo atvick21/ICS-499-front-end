@@ -1,5 +1,6 @@
 export interface Quiz{
-    //id : number;
-    questions : string ;
-    answers : {option : string, correct: boolean} [];
+  gameId: string;
+  userId: string;
+  question : string;
+  answer : string;
 }
