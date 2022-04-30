@@ -12,59 +12,46 @@ import { AuthenticationService } from '../service/authentication.service';
   styleUrls: ['./quiz.component.scss']
 })
 export class QuizComponent implements OnInit {
-  quiz : Quiz[] = [];
+
+  quizzes : Quiz[] = [];
   question: string;
   currentQuiz = 0;
-  answers: any;
+  answer: any;
   answerSelected: boolean;
   correctAnswers = 0;
   incorrectAnswers = 0;
   score = false;
   random : number;
+  
   constructor(private quizService: QuizService, private _snackBar: MatSnackBar, private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.quizService.getQuizByUserId(this.authenticationService.getUserFromLocalCache().userId).subscribe(data => {
-      this.quiz = data;
+      this.quizzes = data;
     });
-    this.random = Math.floor(Math.random()*this.quiz.length);
+    this.random = Math.floor(Math.random()*this.quizzes.length);
   }
 
-  onAnswer(option: boolean) {
+  onAnswer(answer: string): boolean {
     this.answerSelected =true;
 
     setTimeout(() => {
       this.currentQuiz++;
-      this.random = Math.floor(Math.random() *this.quiz.length);
+      this.random = Math.floor(Math.random() *this.quizzes.length);
       this.answerSelected = false;
-
     }, 6000);
 
-    if(option) {
+    if (answer == this.quizzes[this.random].answer) {
       this.correctAnswers++;
+      return true;
     } else {
       this.incorrectAnswers++;
+      return false;
     }
   }
 
-  displayScore(){
-    this.score= true;
+  displayScore() {
+    this.score = true;
   }
-
-  // getQuizes() {
-  //   this.quizService.getQuiz().subscribe({
-  //     next: (response: Quiz[]) => {
-  //       this.quiz = response
-  //     },
-  //     error: (errorResponse: HttpErrorResponse) => {
-  //       this._snackBar.open(errorResponse.error.message, "close", {
-  //         duration: 2 * 1000,
-  //       });
-  //     }
-  //   });
-  //}
-
-
-
 
 }
