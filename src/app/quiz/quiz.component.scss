@@ -2,13 +2,11 @@
     max-width: 1200px;
     margin: 200px auto; 
     display: flex;
-            justify-content: center;
-                
+    justify-content: center;                
 }
 
 button {
-            font-size: 20px;
-            
+  font-size: 20px;            
 }
 .question-form-container {
     max-width: 800px;
@@ -16,11 +14,11 @@ button {
 }
 
 mat-card-content {
-    font-size: 30px;
+  font-size: 30px;
 }
 
 li {
-    list-style: none;
+  list-style: none;
 }
 
 .option-container {
@@ -29,16 +27,15 @@ li {
   align-items: center;
   margin-bottom: 8px;
 }
-
-
-
-
 input {
   margin-right: 10px;
+}
+.score {
+  margin: 10px;
 }
 .correctAnswer {
   color: green;
 }
-.incorrectAnswer{
+.incorrectAnswer {
   color: red;
 }
