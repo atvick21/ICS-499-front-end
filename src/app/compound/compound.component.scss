@@ -1,6 +1,28 @@
-.center {
-  display: flex;
-  height: 300px;
-  justify-content: center;
-  align-items: center;
+#title {
+  display: block;
+  text-align: center;
+}
+
+.compound {
+  border: 5px;
+  border-style: solid;
+  width: fit-content;
+  margin: 10px;
+}
+
+.element-in-compound {
+  text-align: center;
+  display: inline-block;
+  border: 5px;
+  border-style: solid;
+  padding: 20px;
+  margin: 5px;
+  width: 65px;
+  height: 65px;
+  background-size: cover;
+  cursor: pointer;
+}
+
+#validate-btn {
+  margin: 25px;
 }

@@ -1,5 +1,6 @@
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Output, EventEmitter } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HeaderType } from '../enum/header-type.enum';
@@ -13,48 +14,55 @@ import { NotificationService } from '../service/notification.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnDestroy {
   public showLoading: boolean;
   private subscriptions: Subscription[] = [];
+  public isLoggedIn: boolean;
+
+  @Output() newItemEvent = new EventEmitter<User>();
 
   constructor(private router: Router, private authenticationService: AuthenticationService, 
     private notificationService: NotificationService) { }
 
-  ngOnInit(): void {
-    if (this.authenticationService.isUserLoggedIn()) {
-      this.router.navigateByUrl('/main/periodictable');
-    } else {
-      this.router.navigateByUrl('/login');
-    }
+  private loggedIn(value: User) {
+    this.newItemEvent.emit(value);
   }
 
-  public onLogin(user: User): void {
+  public onClickRegister(): void {
+    document.getElementById("close-login-modal").click();
+  }
+
+  public onLogin(userForm: NgForm): void {
     this.showLoading = true;
-    // console.log(user);
     this.subscriptions.push(
-      this.authenticationService.login(user).subscribe({
+      this.authenticationService.login(userForm.value).subscribe({
         next: (response: HttpResponse<User>) => {
           // token
           const token = response.headers.get(HeaderType.JWT_TOKEN);
           this.authenticationService.saveToken(token);
           this.authenticationService.addUserToLocalCache(response.body);
+          this.loggedIn(this.authenticationService.getUserFromLocalCache());
+          document.getElementById("close-login-modal").click();
+          document.getElementById("navDrawr").click();
           this.router.navigateByUrl('/main/periodictable');
           this.showLoading = false;
+          userForm.reset();
+          this.sendNotification(NotificationType.SUCCESS, "You've been successfully logged in.");
         },
         error: (errorResponse: HttpErrorResponse) => {
         	console.log(errorResponse);
-        	this.sendErrorNotification(NotificationType.ERROR, errorResponse.error.message);
+        	this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
         	this.showLoading = false;
         }
       })
     );
   }
   
-  private sendErrorNotification(notificationType: NotificationType, message: string): void {
+  private sendNotification(notificationType: NotificationType, message: string): void {
     if (message) {
     	this.notificationService.notify(notificationType, message);
     } else {
-		this.notificationService.notify(notificationType, "An error occured. Please try again.");
+		  this.notificationService.notify(notificationType, "An error occured. Please try again.");
     }
   }
 

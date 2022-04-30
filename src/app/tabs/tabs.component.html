@@ -1,0 +1,17 @@
+<nav *ngIf="isLoggedIn" mat-tab-nav-bar class="navbar">
+    <a mat-tab-link
+            *ngFor="let link of tabLinks"
+            [routerLink]="link.path"
+            routerLinkActive #rla="routerLinkActive"
+            [active]="rla.isActive"> 
+            {{link.label}}
+    </a>
+</nav>
+<nav *ngIf="!isLoggedIn" mat-tab-nav-bar class="navbar">
+    <a mat-tab-link
+            [routerLink]="tabLinks[0].path"
+            routerLinkActive #rla="routerLinkActive"
+            [active]="rla.isActive"> 
+            {{tabLinks[0].label}}
+    </a>
+</nav>

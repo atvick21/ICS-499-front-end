@@ -1,3 +1,14 @@
-<div class="center">
-  <app-element *ngFor="let element of elementsInCompound" [element]="element"></app-element>
+<h1 id="title">Compound</h1>
+<div>
+  <ng-container *ngIf="elementsInCompound.length > 0">
+    <div class="compound">
+      <div class="element-in-compound" *ngFor="let element of elementsInCompound; index as i" (click)="removeElementFromCompound(i, element)" 
+        [ngStyle]="{'background-color': '#' + element?.cPKHexColor}">
+          {{element?.symbol}}
+      </div>
+    </div>
+  </ng-container>
+  <div id="validate-btn" *ngIf="elementsInCompound.length > 0">
+    <button mat-raised-button color="primary" (click)="validateCompound()">Validate Compound</button>
+  </div>
 </div>
