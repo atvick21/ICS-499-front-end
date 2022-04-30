@@ -23,7 +23,9 @@ export class QuizComponent implements OnInit {
   constructor(private quizService: QuizService, private _snackBar: MatSnackBar) { }
 
     ngOnInit(): void {
-      this.quiz = this.quizService.getQuiz();
+      this.quizService.getQuiz().subscribe(data => {
+        this.quiz = data;
+      });
       this.random = Math.floor(Math.random()*this.quiz.length);
       }
   onAnswer(option: boolean){
