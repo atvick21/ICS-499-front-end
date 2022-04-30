@@ -3,8 +3,7 @@
     <input *ngFor="let item of [].constructor(this.categories.length)" class="category-cancel" type="radio" name="categories" id="cancel">
     <div class="periodic-table">
         <div *ngFor="let element of elements" [ngClass]="['element', element.tablePosition, element.groupBlock]" (click)="selectElement($event)">
-            <input [attr.id]="element.atomicNumber" class="activate" type="radio" name="elements">            
-            <input class="deactivate" type="radio" name="elements">
+            <input [attr.id]="element.atomicNumber" class="activate" type="radio" name="elements">
             <div class="overlay"></div>
             <div class="square">
                 <div class="model"></div>
