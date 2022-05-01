@@ -1,4 +1,8 @@
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, AfterViewInit, HostListener, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/service/authentication.service';
+import { FlashCardService } from 'src/app/service/flashcard.service';
 
 @Component({
   selector: 'app-flashcard',
@@ -6,14 +10,16 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild, AfterViewIni
   styleUrls: ['./flashcard.component.scss']
 })
 export class FlashcardComponent implements OnInit {
+  flashcards: any[] = [];
+
   @ViewChild("frontEl")
   frontEl!: ElementRef;
 
   @ViewChild("backEl")
   backEl!: ElementRef;
 
-  @Input() flashcard: any = {};
-  @Output() flip: EventEmitter<any> = new EventEmitter<any>();
+  flashcard: any = {};
+  // @Output() flip: EventEmitter<any> = new EventEmitter<any>();
 
   flipped = false;
 
@@ -24,9 +30,13 @@ export class FlashcardComponent implements OnInit {
     this.setMaxHeight()
   }
 
-  constructor() { }
+  constructor(private router: Router, private service: FlashCardService, private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
+    if (!this.authenticationService.isUserLoggedIn())
+      this.router.navigateByUrl('/main/periodictable');
+    else
+      this.getAllFlashcardsByUserId(this.authenticationService.getUserFromLocalCache().userId);
   }
 
   ngAfterViewInit() {
@@ -41,32 +51,48 @@ export class FlashcardComponent implements OnInit {
       const backHeight = this.backEl.nativeElement.getBoundingClientRect().height
       const height: number = Math.max(frontHeight, backHeight, 100);
       this.height = height;
-      /*let diff: number = height - this.height;
-      diff = (diff < 0) ? diff * -1 : diff;
-      if(diff > 20) {
-        this.height = height;
-      }*/
     }
   }
 
-  changeCheckbox(option: any, index: number,event: any) {
-    /*if (option) {
-      this.setFlip(event);
-      
-    }*/
-  }
-
-  setBodyFlip(event: any) {
-    //if(this.flipped) {
-      this.setFlip(event);
-    //}
-  }
-
-  setFlip(event: any) {
+  flipCard(event: any) {
     this.flipped = !this.flipped;
-    this.flip.emit();
     event.stopImmediatePropagation();
     event.stopPropagation();
+  }
+
+  public createFlashcard(item: any): void {
+    let userId = this.authenticationService.getUserFromLocalCache().userId;
+    item[ "userId" ] = userId;
+    // console.log(item);
+    this.service.createFlashcard(item).subscribe({
+      next: (response: HttpResponse<any>) => {       
+      },
+      error: (errorResponse: HttpErrorResponse) => {
+        console.error(errorResponse);
+      }
+    });
+  }
+
+  public getAllFlashcard(): void {
+    this.service.getAllFlashcard().subscribe(
+      (response: any) => {
+        this.flashcards = response;
+      },
+      (errorResponse: HttpErrorResponse) => {
+        console.error(errorResponse);
+      }
+    );
+  }
+
+  public getAllFlashcardsByUserId(userId: string): void {
+    this.service.getFlashcardsByUserId(userId).subscribe(
+      (response: any) => {
+        this.flashcards = response;
+      },
+      (errorResponse: HttpErrorResponse) => {
+        console.error(errorResponse);
+      }
+    );
   }
 
 }

@@ -4,8 +4,7 @@ import { AuthenticationGuard } from './guard/authentication.guard';
 import { PeriodicTableComponent } from './periodic-table/periodic-table.component';
 import { UserComponent } from './user/user.component';
 import { QuizComponent } from './quiz/quiz.component';
-import { FlashcardListComponent } from './components/flashcard-list/flashcard-list.component';
-import { FlashcardCreateComponent } from './components/flashcard-create/flashcard-create.component';
+import { FlashcardComponent } from './components/flashcard/flashcard.component';
 import { AuthorizationGuard } from './guard/authorization.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
@@ -16,8 +15,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'editprofile', component: EditProfileComponent },
   { path: 'quiz', component: QuizComponent, canActivate: [AuthenticationGuard] },
-  { path: 'flashcard/all', component: FlashcardListComponent, canActivate: [AuthenticationGuard] },
-  { path: 'flashcard/create', component: FlashcardCreateComponent, canActivate: [AuthenticationGuard] },
+  { path: 'flashcard', component: FlashcardComponent, canActivate: [AuthenticationGuard] },
   { path: '', redirectTo: '/main/periodictable', pathMatch: 'full' }
 ]
 
