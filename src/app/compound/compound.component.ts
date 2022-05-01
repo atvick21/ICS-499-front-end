@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { Element } from '../model/element.model';
 import {Observable, Subscription} from "rxjs";
 import {CompoundService} from "../service/compound.service";
@@ -12,19 +12,29 @@ import { AuthenticationService } from '../service/authentication.service';
 export class CompoundComponent implements OnInit {
   private interacted: Boolean = false;
   private eventsSubscription: Subscription;
+  private modalSubscription: Subscription;
   elementsInCompound: Element[] = [];
   atomsInCompound: Map<String, number> = new Map();
   @Input() interactedElement: Element;
   @Input() events: Observable<Element>;
 
+  displayModal: Boolean = false;
+  @Input() openModal: Observable<any>
+  @Output() signalModalEvent: EventEmitter<any> = new EventEmitter();
+
+
   constructor(private compoundService: CompoundService, private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.eventsSubscription = this.events.subscribe((element) => this.addInteractedElements(element));
+    this.modalSubscription = this.openModal.subscribe(() => {
+      this.showModal();
+    });
   }
 
   ngOnDestroy() {
     this.eventsSubscription.unsubscribe();
+    this.modalSubscription.unsubscribe();
   }
 
   public getInteracted(): Boolean {
@@ -50,6 +60,10 @@ export class CompoundComponent implements OnInit {
     console.log("Call in Compound.\nSymbol: \n" + element.symbol);
   }
 
+  public showModal() {
+    this.displayModal = !this.displayModal;
+  }
+
   public removeElementFromCompound(index: number, element: Element) {
     let tempAtoms = this.atomsInCompound.get(element.symbol)
     this.elementsInCompound.splice(index, 1)
@@ -58,6 +72,10 @@ export class CompoundComponent implements OnInit {
     } else {
       this.atomsInCompound.set(element.symbol, tempAtoms - 1)
     }
+  }
+
+  public emitModalEvent(): void {
+    this.signalModalEvent.emit()
   }
 
   public validateCompound() {
@@ -70,7 +88,7 @@ export class CompoundComponent implements OnInit {
       data.push({"element": key, "numberOfAtoms": value});
     }
 
-    // to do: the subscribe method should call back an HTTP error that sends a front-end notification 
+    // to do: the subscribe method should call back an HTTP error that sends a front-end notification
     if(this.authenticationService.isUserLoggedIn()) {
       let payload = {
         data,
@@ -89,7 +107,10 @@ export class CompoundComponent implements OnInit {
       // careful of memory leak
       this.compoundService
       .validate(payload)
-        .subscribe(response => console.log("You've discovered: " + response.body.title));
+        .subscribe(response => {
+          this.emitModalEvent();
+          console.log("You've discovered: " + response.body.title)
+        });
     }
   }
 }
