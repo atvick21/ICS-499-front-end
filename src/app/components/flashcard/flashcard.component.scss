@@ -10,6 +10,7 @@
   transition: 150ms;
   cursor: pointer;
   transform: perspective(1000px) rotateY(var(--rotate-y, 0)) translateY(var(--translate-y, 0));
+  height: 100px;
 }
 
 .card:hover {
@@ -50,7 +51,7 @@
   margin-top: 0;
 }
 
-.container {
+.flashcard-container {
   margin: 1rem 2rem;
 }
 
