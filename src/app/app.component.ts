@@ -33,6 +33,10 @@ export class AppComponent implements OnInit {
     this.isLoggedIn = true;
   }
 
+  public onClickProfile(): void {
+    this.router.navigate(['/profile']);
+  }
+
   public onClickLogout(): void {
     this.authenticationService.logOut();
     this.sendNotification(NotificationType.SUCCESS, "You've been successfully logged out.");
