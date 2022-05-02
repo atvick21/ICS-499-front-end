@@ -28,7 +28,7 @@ import { ElementService } from './service/element.service';
 import { CompoundComponent } from './compound/compound.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TabsComponent } from './tabs/tabs.component';
-import { FlashcardComponent } from './components/flashcard/flashcard.component';
+import { FlashcardComponent } from './flashcard/flashcard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ValidationModalComponent } from './compound/validation-modal/validation-modal.component';

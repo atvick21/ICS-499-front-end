@@ -61,3 +61,14 @@
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1rem;
 }
+
+.help-block {
+  color: red;
+}
+.flascards {
+  margin-top: 100px;
+}
+.toggle-cards {
+  color: #2C3E50;
+  cursor: pointer;
+}
