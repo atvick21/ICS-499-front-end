@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { Element } from '../model/element.model';
 import {Observable, Subscription} from "rxjs";
 import {CompoundService} from "../service/compound.service";
@@ -17,16 +17,11 @@ import {ValidationModalComponent} from "./validation-modal/validation-modal.comp
 export class CompoundComponent implements OnInit {
   private interacted: Boolean = false;
   private eventsSubscription: Subscription;
-  private modalSubscription: Subscription;
   elementsInCompound: Element[] = [];
   dialogRef: MatDialogRef<ValidationModalComponent>;
   atomsInCompound: Map<String, number> = new Map();
   @Input() interactedElement: Element;
   @Input() events: Observable<Element>;
-
-  displayModal: Boolean = false;
-  @Input() openModal: Observable<any>
-  @Output() signalModalEvent: EventEmitter<any> = new EventEmitter();
 
 
   constructor(private compoundService: CompoundService, private authenticationService: AuthenticationService, public dialog: MatDialog) { }
@@ -37,7 +32,6 @@ export class CompoundComponent implements OnInit {
 
   ngOnDestroy() {
     this.eventsSubscription.unsubscribe();
-    this.modalSubscription.unsubscribe();
   }
 
   public getInteracted(): Boolean {
@@ -61,10 +55,6 @@ export class CompoundComponent implements OnInit {
       this.atomsInCompound.set(element.symbol, tempAtoms + 1)
     }
     console.log("Call in Compound.\nSymbol: \n" + element.symbol);
-  }
-
-  public showModal() {
-    this.displayModal = !this.displayModal;
   }
 
   public removeElementFromCompound(index: number, element: Element) {
