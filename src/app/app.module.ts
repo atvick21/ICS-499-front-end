@@ -31,6 +31,8 @@ import { TabsComponent } from './tabs/tabs.component';
 import { FlashcardListComponent } from './components/flashcard-list/flashcard-list.component';
 import { FlashcardComponent } from './components/flashcard/flashcard.component';
 import { FlashcardCreateComponent } from './components/flashcard-create/flashcard-create.component';
+import { ValidationModalComponent } from './compound/validation-modal/validation-modal.component';
+import {MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { FlashcardCreateComponent } from './components/flashcard-create/flashcar
     UserComponent,
     FlashcardListComponent,
     FlashcardComponent,
-    FlashcardCreateComponent
+    FlashcardCreateComponent,
+    ValidationModalComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +60,7 @@ import { FlashcardCreateComponent } from './components/flashcard-create/flashcar
     BrowserAnimationsModule,
     MatCardModule,
     MatTabsModule,
+    MatDialogModule,
     MatToolbarModule,
     MatButtonModule,
     FlexLayoutModule,
