@@ -54,7 +54,7 @@ export class CompoundComponent implements OnInit {
     } else {
       this.atomsInCompound.set(element.symbol, tempAtoms + 1)
     }
-    console.log("Call in Compound.\nSymbol: \n" + element.symbol);
+    // console.log("Call in Compound.\nSymbol: \n" + element.symbol);
   }
 
   public removeElementFromCompound(index: number, element: Element) {
