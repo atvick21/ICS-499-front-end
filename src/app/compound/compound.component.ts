@@ -4,9 +4,9 @@ import {Observable, Subscription} from "rxjs";
 import {CompoundService} from "../service/compound.service";
 import { AuthenticationService } from '../service/authentication.service';
 import {Compound} from "../model/compound";
-import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
-import {MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {ValidationModalComponent} from "./validation-modal/validation-modal.component";
+import { HttpErrorResponse, HttpEvent, HttpResponse, HttpEventType } from "@angular/common/http";
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
+import { ValidationModalComponent } from "./validation-modal/validation-modal.component";
 
 @Component({
   selector: 'app-compound',
@@ -22,7 +22,7 @@ export class CompoundComponent implements OnInit {
   atomsInCompound: Map<String, number> = new Map();
   @Input() interactedElement: Element;
   @Input() events: Observable<Element>;
-
+  public progressBar: boolean = false;
 
   constructor(private compoundService: CompoundService, private authenticationService: AuthenticationService, public dialog: MatDialog) { }
 
@@ -93,6 +93,7 @@ export class CompoundComponent implements OnInit {
   }
 
   public validateCompound() {
+    this.progressBar = true;
     // window.alert("Number of elements in compound: " + this.elementsInCompound.length + "\nValidating compound...")
     // console.log(this.elementsInCompound);
     let data = [];
@@ -112,11 +113,13 @@ export class CompoundComponent implements OnInit {
       this.compoundService
         .validate(payload)
           .subscribe({
-            next: (response: HttpResponse<Compound>) => {
+            next: (response: HttpResponse<Compound>,) => {
               this.openConfirmationDialogSuccess(response, true);
+              this.progressBar = false;
             },
             error: (errorResponse: HttpErrorResponse) => {
               this.openConfirmationDialogFail(errorResponse);
+              this.progressBar = false;
             }
           });
     } else {
@@ -131,9 +134,11 @@ export class CompoundComponent implements OnInit {
         .subscribe({
           next: (response: HttpResponse<Compound>) => {
             this.openConfirmationDialogSuccess(response, false);
+            this.progressBar = false;
           },
           error: (errorResponse: HttpErrorResponse) => {
-            this.openConfirmationDialogFail(errorResponse)
+            this.openConfirmationDialogFail(errorResponse);
+            this.progressBar = false;
           }
         });
     }
