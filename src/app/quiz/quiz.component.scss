@@ -30,12 +30,21 @@ li {
 input {
   margin-right: 10px;
 }
-.score {
-  margin: 10px;
-}
+
 .correctAnswer {
   color: green;
 }
 .incorrectAnswer {
   color: red;
+}
+.toggle-score {
+  color: #2C3E50;
+  cursor: pointer;
+}
+.score {
+  margin: 10px;
+}
+
+.submit-btn {
+  margin: 10px;
 }
