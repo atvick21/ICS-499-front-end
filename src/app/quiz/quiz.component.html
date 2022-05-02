@@ -1,22 +1,29 @@
 <div class= "container p-5">
-	<div class= "row">
-		<div class= "col-sm-8 offset-2">
+	<div *ngIf="quizzes.length > 0; else noQuizzes">
+		<form class= "col-sm-8 offset-2" (ngSubmit)="onSubmit(quizForm)" #quizForm="ngForm">
 				<h1 class="text-center"> {{currentQuiz + 1}} of {{quizzes.length}}</h1>
 				<h2>{{quizzes[random]?.question}}</h2>
-			<ul class="list-group" *ngFor="let quiz of quizzes">
-				<label>
-					<li class="list-group-item">
-						<input type="radio" name="options" (change)="onAnswer(quiz?.answer)" [disabled]="answerSelected">
+			<ul class="list-group">
+				<li class="list-group-item" *ngFor="let quiz of quizzes; let i = index">
+					<label [attr.for]='"option-" + i'>
+						<input type="radio" name="answers" id="option-{{i}}" [disabled]="answerSelected" ngModel [value]="quiz.answer">
 						{{quiz?.answer}}
-					</li>
-				</label>
+					</label>
+				</li>
 			</ul>
-			<div class="score">
-				<button class="btn btn-success btn-block" (click)="displayScore()">Show score</button>
-				<div *ngIf="score">
-					Correct Answers: <span class="correctAnswer">{{correctAnswers}}</span> | Incorrect Answers: <span class="incorrectAnswer">{{incorrectAnswers}}</span>
-				</div>
-			</div>
+			<button class="btn btn-primary submit-btn" type="submit">Submit</button>
+		</form>
+	</div>
+	<!-- score -->
+	<div class="score">
+		<a class="toggle-score" (click)="displayScore()">Hide/Show Score</a>
+		<div *ngIf="score">
+			Correct Answers: <span class="correctAnswer">{{correctAnswers}}</span> | Incorrect Answers: <span class="incorrectAnswer">{{incorrectAnswers}}</span>
 		</div>
 	</div>
+	<ng-template #noQuizzes>
+		<h1>
+		  First Discover elements or compounds to play quiz.
+		</h1>
+	</ng-template>
 </div>
