@@ -27,7 +27,7 @@ export class PeriodicTableComponent implements OnInit, OnDestroy {
   constructor(private elementService: ElementService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.getElements(true);
+    this.getElements();
   }
 
   // select element event
@@ -36,27 +36,18 @@ export class PeriodicTableComponent implements OnInit, OnDestroy {
     this.interactedElement = this.elements[elmIndex];
     if(this.interactedElement) {
       this.sendElementMessage.emit(this.interactedElement);
-      console.log(this.interactedElement);
+      this._snackBar.open("Added " + this.interactedElement.name + " to test.", "close");
     }
   }
 
-  async getElements(showNotification: boolean) {
+  async getElements() {
     this.subs.add(
       this.elementService.getElements().subscribe({
         next: (response: Element[]) => {
-          // this.userService.addUsersToLocalCache(response);
           this.elements = this.sortElements(response);
-          // this.refreshing = false;
-          if(showNotification) {
-            this._snackBar.open("loaded elements", "close", {
-              duration: 2 * 1000,
-            });
-          }
         },
         error: (errorResponse: HttpErrorResponse) => {
-          this._snackBar.open(errorResponse.error.message, "close", {
-            duration: 2 * 1000,
-          });
+          this._snackBar.open("failed to load periodic table data", "close");
         }
       })
     );

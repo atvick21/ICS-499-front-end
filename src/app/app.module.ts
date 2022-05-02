@@ -33,6 +33,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ValidationModalComponent } from './compound/validation-modal/validation-modal.component';
 import {MatDialogModule, MatDialogRef} from "@angular/material/dialog";
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 
 @NgModule({
   declarations: [
@@ -66,7 +68,8 @@ import {MatDialogModule, MatDialogRef} from "@angular/material/dialog";
     FlexLayoutModule,
     MatIconModule,
     MatSidenavModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressBarModule
   ],
   providers: [NotificationService, AuthenticationGuard, AuthenticationService, ElementService, UserService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
