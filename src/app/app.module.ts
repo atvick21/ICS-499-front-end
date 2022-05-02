@@ -31,6 +31,8 @@ import { TabsComponent } from './tabs/tabs.component';
 import { FlashcardListComponent } from './components/flashcard-list/flashcard-list.component';
 import { FlashcardComponent } from './components/flashcard/flashcard.component';
 import { FlashcardCreateComponent } from './components/flashcard-create/flashcard-create.component';
+import { ProfileComponent } from './profile/profile.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ValidationModalComponent } from './compound/validation-modal/validation-modal.component';
 import {MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 
@@ -48,6 +50,8 @@ import {MatDialogModule, MatDialogRef} from "@angular/material/dialog";
     FlashcardListComponent,
     FlashcardComponent,
     FlashcardCreateComponent,
+    ProfileComponent,
+    EditProfileComponent,
     ValidationModalComponent
   ],
   imports: [
