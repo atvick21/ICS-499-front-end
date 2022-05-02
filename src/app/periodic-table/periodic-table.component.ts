@@ -47,9 +47,7 @@ export class PeriodicTableComponent implements OnInit, OnDestroy {
           this.elements = this.sortElements(response);
         },
         error: (errorResponse: HttpErrorResponse) => {
-          this._snackBar.open(errorResponse.error.message, "close", {
-            duration: 2 * 1000,
-          });
+          this._snackBar.open("failed to load periodic table data", "close");
         }
       })
     );
