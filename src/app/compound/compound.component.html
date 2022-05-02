@@ -2,7 +2,7 @@
 <div>
   <ng-container *ngIf="elementsInCompound.length > 0">
     <div class="compound">
-      <div class="element-in-compound" *ngFor="let element of elementsInCompound; index as i" (click)="removeElementFromCompound(i, element)" 
+      <div class="element-in-compound" *ngFor="let element of elementsInCompound; index as i" (click)="removeElementFromCompound(i, element)"
         [ngStyle]="{'background-color': '#' + element?.cPKHexColor}">
           {{element?.symbol}}
       </div>

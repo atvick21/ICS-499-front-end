@@ -33,6 +33,8 @@ import { FlashcardComponent } from './components/flashcard/flashcard.component';
 import { FlashcardCreateComponent } from './components/flashcard-create/flashcard-create.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { ValidationModalComponent } from './compound/validation-modal/validation-modal.component';
+import {MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     FlashcardComponent,
     FlashcardCreateComponent,
     ProfileComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    ValidationModalComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +64,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     BrowserAnimationsModule,
     MatCardModule,
     MatTabsModule,
+    MatDialogModule,
     MatToolbarModule,
     MatButtonModule,
     FlexLayoutModule,
