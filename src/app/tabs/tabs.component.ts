@@ -29,13 +29,9 @@ export class TabsComponent implements OnInit {
         label: 'Quiz'
       },
       {
-        path: 'flashcard/create',
-        label: 'Create FlashCard'
-      },  
-      {
-        path: 'flashcard/all',
-        label: 'All FlashCards'
-      },
+        path: 'flashcard',
+        label: 'Flashcards'
+      }
     ]    
   }
 

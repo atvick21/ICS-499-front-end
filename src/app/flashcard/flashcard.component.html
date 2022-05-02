@@ -1,0 +1,42 @@
+<!-- create flashcard -->
+<div class="flashcards">
+  <h3>Create Flashcards</h3>
+  <div class="d-flex justify-content-center form_container">
+    <form #flascardForm="ngForm" (ngSubmit)="createFlashcard(flascardForm.value)">
+      <div class="input-group">
+        <input type="text" class="form-control" name="question" placeholder="Enter a question" ngModel
+          #questionInput="ngModel" required>
+      </div>
+      <div class="help-block" *ngIf="questionInput.invalid && questionInput.touched">
+        Please enter a question.
+      </div>
+      <div class="input-group mt-3">
+        <input type="text" class="form-control" name="answer" placeholder="Enter the corret answer" ngModel
+          #answerInput="ngModel" required>
+      </div>
+      <div class="help-block" *ngIf="answerInput.invalid && answerInput.touched">
+        Please enter a answer.
+      </div>
+      <div class="d-flex justify-content-center mt-3 login_container">
+        <button type="submit" [disabled]="flascardForm.invalid" name="button" class="btn btn-primary">
+          <span>Submit</span>
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="mt-4">
+    <div class="d-flex justify-content-center links">
+      <a (click)="displayCards()" class="ml-2 toggle-cards">Hide/See My Flash Card(s)</a>
+    </div>
+  </div>
+
+  <!-- list -->
+  <div class="flashcard-container" *ngIf="allCards">
+    <div class="card-grid">
+      <div class="card" *ngFor="let displayCard of flashcards; let i = index" id={{i}} (click)="flipCard(i)">
+        <div class="front">{{displayCard.question}}</div>
+        <div class="back">{{displayCard.answer}}</div>
+      </div>
+    </div>
+  </div>
+</div>
