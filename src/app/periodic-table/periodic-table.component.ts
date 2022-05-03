@@ -36,8 +36,9 @@ export class PeriodicTableComponent implements OnInit, OnDestroy {
     this.interactedElement = this.elements[elmIndex];
     if(this.interactedElement) {
       this.sendElementMessage.emit(this.interactedElement);
-      this._snackBar.open(this.interactedElement.name + " added to experiment.", "close");
-      window.scrollTo(0, document.body.scrollHeight);
+      this._snackBar.open(this.interactedElement.name + " added to experiment.", "close", {
+        duration: 3000
+      });
     }
   }
 

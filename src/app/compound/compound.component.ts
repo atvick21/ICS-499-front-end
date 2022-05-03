@@ -49,6 +49,8 @@ export class CompoundComponent implements OnInit {
   }
 
   public addInteractedElements(element: Element) {
+    if(this.elementsInCompound.length == 0)
+      window.scrollTo(0, document.body.scrollHeight);
     let tempAtoms = this.atomsInCompound.get(element.symbol);
     this.elementsInCompound.push(element);
     if (tempAtoms == null) {
@@ -63,11 +65,20 @@ export class CompoundComponent implements OnInit {
     this.elementsInCompound.splice(index, 1);
     if (tempAtoms == 1) {
       this.atomsInCompound.delete(element.symbol);
-      this._snackBar.open(element.name +  " removed from experiment.", "close");
+      this._snackBar.open(element.name +  " removed from experiment.", "close", {
+        duration: 3000
+      });
     } else {
       this.atomsInCompound.set(element.symbol, tempAtoms - 1);
-      this._snackBar.open(element.name +  " removed from experiment.", "close");
+      this._snackBar.open(element.name +  " removed from experiment.", "close", {
+        duration: 3000
+      });
     }
+  }
+
+  public clearExperiment() {
+    this.elementsInCompound = [];
+    this.atomsInCompound.clear();
   }
 
   public openConfirmationDialogFail(response: HttpErrorResponse) {

@@ -2,7 +2,7 @@
 <div id="compound-test">
   <h1 id="title">Experiment</h1>
   <div>
-    <ng-container *ngIf="elementsInCompound.length > 0">
+    <ng-container *ngIf="elementsInCompound.length > 0; else emptyExperiment">
       <div class="compound">
         <div class="element-in-compound" *ngFor="let element of elementsInCompound; index as i" (click)="removeElementFromCompound(i, element)"
           [ngStyle]="{'background-color': '#' + element?.cPKHexColor}">
@@ -11,8 +11,13 @@
       </div>
     </ng-container>
     <div id="validate-btn" *ngIf="elementsInCompound.length > 0">
-      <button mat-raised-button color="primary" (click)="validateCompound()">Validate</button>
+      <button mat-raised-button color="primary" (click)="validateCompound()">Run Experiment</button>
+      <button mat-raised-button (click)="clearExperiment()">Clear Experiment</button>
     </div>
   </div>
+  <ng-template #emptyExperiment>
+		<h2>
+		  Add elements to the the experiment by clicking on elements in the periodic table.
+		</h2>
+	</ng-template>
 </div>
-<!-- <img src="../../assets/images/chem-banner.jpg" /> -->
