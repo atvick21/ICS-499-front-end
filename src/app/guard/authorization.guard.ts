@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { NotificationType } from '../enum/notification-type.enum';
 import { AuthorizationService } from '../service/authorization.service';
 import { NotificationService } from '../service/notification.service';
@@ -21,10 +20,9 @@ export class AuthorizationGuard implements CanActivate {
     if(this.authorizationService.isAdmin) {
       return true;
     }
-
     this.router.navigate(['/main/periodictable']);
 		this.notificationService.notify(NotificationType.ERROR, "You are not authorizaed to access this page.".toUpperCase());
-    return null;
+    return false;
   }
   
 }

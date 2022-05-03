@@ -2,7 +2,7 @@
 #title {
   display: block;
   text-align: center;
-  color: grey;
+  // color: grey;
 }
 
 .compound {
@@ -10,6 +10,7 @@
   border-style: solid;
   width: fit-content;
   margin: 10px;
+  background-color: lightgrey;
 }
 
 .element-in-compound {
@@ -21,7 +22,6 @@
   margin: 5px;
   width: 65px;
   height: 65px;
-  background-size: cover;
   cursor: pointer;
 }
 
@@ -29,10 +29,18 @@
   margin: 25px;
 }
 
+button {
+  margin: 10px;
+}
+
 #compound-test {
-  height: 350px;
-  width: 960;
-  background-image: url("../../assets/images/future-chem-bkgrnd.jpg");
+  height: 250px;
+  width: 100%;
+  background-image: url("../../assets/images/SEF4bG.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+h2 {
+  margin: 10px;
 }

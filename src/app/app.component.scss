@@ -12,3 +12,29 @@ nav button {
   position: absolute; 
   right: 10px;
 }
+
+// toolbar
+.mat-toolbar {
+  // background: teal;
+  background-image: url("../assets/images/banner.jpg");
+  color: #fff
+}
+
+.mat-drawer {
+  background: lightgrey;
+  color: #fff
+}
+
+.login-btn {
+  background-color: teal;
+  color: white;
+}
+
+.logout-btn {
+  background-color: teal;
+  color: white;
+}
+
+#title {
+  background-color: black;
+}
