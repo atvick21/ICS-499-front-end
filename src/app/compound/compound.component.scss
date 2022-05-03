@@ -1,6 +1,8 @@
+
 #title {
   display: block;
   text-align: center;
+  color: grey;
 }
 
 .compound {
@@ -25,4 +27,12 @@
 
 #validate-btn {
   margin: 25px;
+}
+
+#compound-test {
+  height: 350px;
+  width: 960;
+  background-image: url("../../assets/images/future-chem-bkgrnd.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
