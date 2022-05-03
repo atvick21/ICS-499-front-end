@@ -7,6 +7,7 @@ import {Compound} from "../model/compound";
 import { HttpErrorResponse, HttpEvent, HttpResponse, HttpEventType } from "@angular/common/http";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { ValidationModalComponent } from "./validation-modal/validation-modal.component";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-compound',
@@ -24,7 +25,8 @@ export class CompoundComponent implements OnInit {
   @Input() events: Observable<Element>;
   public progressBar: boolean = false;
 
-  constructor(private compoundService: CompoundService, private authenticationService: AuthenticationService, public dialog: MatDialog) { }
+  constructor(private compoundService: CompoundService, private authenticationService: AuthenticationService, 
+    public dialog: MatDialog, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.eventsSubscription = this.events.subscribe((element) => this.addInteractedElements(element));
@@ -47,23 +49,24 @@ export class CompoundComponent implements OnInit {
   }
 
   public addInteractedElements(element: Element) {
-    let tempAtoms = this.atomsInCompound.get(element.symbol)
+    let tempAtoms = this.atomsInCompound.get(element.symbol);
     this.elementsInCompound.push(element);
-    if ( tempAtoms == null) {
-      this.atomsInCompound.set(element.symbol, 1)
+    if (tempAtoms == null) {
+      this.atomsInCompound.set(element.symbol, 1);
     } else {
-      this.atomsInCompound.set(element.symbol, tempAtoms + 1)
+      this.atomsInCompound.set(element.symbol, tempAtoms + 1);
     }
-    // console.log("Call in Compound.\nSymbol: \n" + element.symbol);
   }
 
   public removeElementFromCompound(index: number, element: Element) {
-    let tempAtoms = this.atomsInCompound.get(element.symbol)
-    this.elementsInCompound.splice(index, 1)
+    let tempAtoms = this.atomsInCompound.get(element.symbol);
+    this.elementsInCompound.splice(index, 1);
     if (tempAtoms == 1) {
-      this.atomsInCompound.delete(element.symbol)
+      this.atomsInCompound.delete(element.symbol);
+      this._snackBar.open(element.name +  " removed from experiment.", "close");
     } else {
-      this.atomsInCompound.set(element.symbol, tempAtoms - 1)
+      this.atomsInCompound.set(element.symbol, tempAtoms - 1);
+      this._snackBar.open(element.name +  " removed from experiment.", "close");
     }
   }
 

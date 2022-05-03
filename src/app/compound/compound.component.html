@@ -1,15 +1,18 @@
 <mat-progress-bar *ngIf="progressBar" mode="indeterminate"></mat-progress-bar>
-<h1 id="title">Compound</h1>
-<div>
-  <ng-container *ngIf="elementsInCompound.length > 0">
-    <div class="compound">
-      <div class="element-in-compound" *ngFor="let element of elementsInCompound; index as i" (click)="removeElementFromCompound(i, element)"
-        [ngStyle]="{'background-color': '#' + element?.cPKHexColor}">
-          {{element?.symbol}}
+<div id="compound-test">
+  <h1 id="title">Experiment</h1>
+  <div>
+    <ng-container *ngIf="elementsInCompound.length > 0">
+      <div class="compound">
+        <div class="element-in-compound" *ngFor="let element of elementsInCompound; index as i" (click)="removeElementFromCompound(i, element)"
+          [ngStyle]="{'background-color': '#' + element?.cPKHexColor}">
+            {{element?.symbol}}
+        </div>
       </div>
+    </ng-container>
+    <div id="validate-btn" *ngIf="elementsInCompound.length > 0">
+      <button mat-raised-button color="primary" (click)="validateCompound()">Validate</button>
     </div>
-  </ng-container>
-  <div id="validate-btn" *ngIf="elementsInCompound.length > 0">
-    <button mat-raised-button color="primary" (click)="validateCompound()">Validate Compound</button>
   </div>
 </div>
+<!-- <img src="../../assets/images/chem-banner.jpg" /> -->
