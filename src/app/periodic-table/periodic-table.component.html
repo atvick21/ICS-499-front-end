@@ -1,3 +1,5 @@
+<app-compound [interactedElement]="interactedElement" [events]="sendElementMessage.asObservable()"></app-compound>
+
 <div class="wrapper">
     <input *ngFor="let item of [].constructor(this.categories.length); let i = index" class="category-toggle" type="radio" name="categories" id={{categories[i]}}>
     <input *ngFor="let item of [].constructor(this.categories.length)" class="category-cancel" type="radio" name="categories" id="cancel">
@@ -35,5 +37,3 @@
         </div>
     </div>
 </div>
-
-<app-compound [interactedElement]="interactedElement" [events]="sendElementMessage.asObservable()"></app-compound>

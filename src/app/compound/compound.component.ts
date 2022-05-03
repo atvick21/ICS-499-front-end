@@ -50,7 +50,7 @@ export class CompoundComponent implements OnInit {
 
   public addInteractedElements(element: Element) {
     if(this.elementsInCompound.length == 0)
-      window.scrollTo(0, document.body.scrollHeight);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     let tempAtoms = this.atomsInCompound.get(element.symbol);
     this.elementsInCompound.push(element);
     if (tempAtoms == null) {
