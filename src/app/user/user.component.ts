@@ -2,7 +2,7 @@ import { HttpErrorResponse, HttpEvent, HttpEventType } from '@angular/common/htt
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { SubSink } from 'subsink';
 import { NotificationType } from '../enum/notification-type.enum';
 import { Role } from '../enum/role.enum';

@@ -1,6 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NotificationType } from '../enum/notification-type.enum';
 import { User } from '../model/user';
@@ -12,19 +11,14 @@ import { NotificationService } from '../service/notification.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit, OnDestroy {
+export class RegisterComponent implements OnDestroy {
 
   public showLoading: boolean;
   private subscriptions: Subscription[] = [];
 
-  constructor(private router: Router, private authenticationService: AuthenticationService, 
+  constructor(private authenticationService: AuthenticationService, 
     private notificationService: NotificationService) { }
 
-  ngOnInit(): void {
-    if (this.authenticationService.isUserLoggedIn()) {
-      this.router.navigateByUrl('/main/periodictable');
-    }
-  }
 
   public onRegister(user: User): void {
     console.log(user);
